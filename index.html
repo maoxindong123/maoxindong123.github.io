@@ -170,10 +170,19 @@
         
 
 <div class="post">
-    <a href="/2023/06/17/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/">
-        <h2 class="post-title">相机模型和多视几何</h2>
+    <a href="/2023/06/17/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
+        <h2 class="post-title">github+hexo搭建主题（正确显示公式）</h2>
     </a>
     <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutorial
+            </a>
+        </span>
         
         <span class="date">
             <span class="icon">
@@ -187,75 +196,93 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="todo">TODO</h1>
-<p>本质矩阵、基本矩阵、单应性矩阵没看，也就是说单应性矩阵没看</p>
-<h1 id="相机模型针孔相机模型">相机模型（针孔相机模型）</h1>
+            <h1 id="搭建方法">搭建方法：</h1>
+<p><a
+target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
+page</a></p>
+<p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
+<p>换主题操作如这个，下好改个名就行</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/github/" style="color: #00a596">github</a>
+        </span>
+        
+    </div>
+    <a href="/2023/06/17/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/06/10/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/">
+        <h2 class="post-title">相机模型和多视几何</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/CV/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CV
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="相机模型针孔相机模型">相机模型（针孔相机模型）</h1>
 <h4 id="针孔相机模型的介绍">针孔相机模型的介绍</h4>
 <p>相机模型如图，有相机中心（针孔）、图像平面（这个是等价的图像平面）、焦距f、物理世界的真实的一点P</p>
 <p><img
 src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121123981.webp" /></p>
 <p>相机模型的作用就是我们对于物理世界拍照的时候，物理世界的每个点会落在我们拍出来的照片的哪个像素上。</p>
-<p>一共有4个坐标系：世界坐标系（随便定义的一个坐标系，可以描述物理世界的任意一个点的坐标，是最大的坐标系）、相机坐标系（如图以相机中心C为原点的坐标系）、图像坐标系（如图以图像中某一点O为原点的坐标系）和像素坐标系（以图像平面的左上角为原点，且每个点都是整数坐标因为是像素的坐标系）</p>
+<p>一共有4个坐标系：</p>
             
         </div>
     </div>
     <div class="post-tags">
         
-        
-    </div>
-    <a href="/2023/06/17/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/06/17/hello-world/">
-        <h2 class="post-title">Hello World</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/6/17
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
+        <span class="tag">
             
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
+            <a href="/tags/SLAM/" style="color: #00bcd4">SLAM</a>
+        </span>
         
+        <span class="tag">
+            
+            <a href="/tags/CV/" style="color: #03a9f4">CV</a>
+        </span>
         
     </div>
-    <a href="/2023/06/17/hello-world/" class="go-post">阅读全文</a>
+    <a href="/2023/06/10/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/" class="go-post">阅读全文</a>
 </div>
 
 

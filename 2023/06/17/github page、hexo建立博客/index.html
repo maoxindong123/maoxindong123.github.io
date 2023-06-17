@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Archives | MXD の 小窝</title>
+        <title>github+hexo搭建主题（正确显示公式） | MXD の 小窝</title>
         <meta name="author" content="MXD" />
         <meta name="description" content="MXD need one corgi!" />
         <meta name="keywords" content="" />
@@ -35,7 +35,9 @@
 
 
 
-<script src="/js/lib/search.js"></script>
+
+
+
 
 
 
@@ -149,42 +151,98 @@
 
             <transition name="into">
                 <div id="main" v-show="!loading">
-                    
-<div id="archives">
-    
-    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
-    
-    <div id="timeline-wrap" ref="timeline">
+                    <div class="article">
+    <div>
+        <h1>github+hexo搭建主题（正确显示公式）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/17
+        </span>
         
-        <div class="timeline" data-title="helloworld">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/6/17</div>
-                <a href="/2023/06/17/hello-world/">
-                    <h3>Hello World</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
+        <span class="category">
+            <a href="/categories/tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutorial
+            </a>
+        </span>
         
-        <div class="timeline" data-title="相机模型和多视几何">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/6/17</div>
-                <a href="/2023/06/17/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/">
-                    <h3>相机模型和多视几何</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/hexo/" style="color: #03a9f4">hexo</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/github/" style="color: #00bcd4">github</a>
+            </span>
+            
+        </span>
         
     </div>
+    
+    <div class="content" v-pre>
+        <h1 id="搭建方法">搭建方法：</h1>
+<p><a
+target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
+page</a></p>
+<p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
+<p>换主题操作如这个，下好改个名就行</p>
+<span id="more"></span>
+<p><del><a
+target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
+<p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p>
+<p><a target="_blank" rel="noopener" href="https://argvchs.github.io/">超好看主题</a></p>
+<p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置文件</a></p>
+<p>实在不行对着改</p>
+<h1 id="日常用法">日常用法：</h1>
+<p>写好md，复制到blog里的<code>source/_post</code>里面</p>
+<p>然后添加front matter（必须在md的开头，---），例如本篇：</p>
+<pre class="markdown"><code>title: github+hexo搭建主题（正确显示公式）
+date: 2023-06-17 16:41:17
+tags:
+    - hexo
+    - github
+categories: 教程</code></pre>
+<p>然后添加缩略</p>
+<pre class="markdown"><code>&lt;!--- more --&gt;</code></pre>
+<p>回到到博客根目录</p>
+<pre class="cmd"><code>hexo clean
+hexo g
+hexo s
+hexo d</code></pre>
+<p>先删除之前生成的</p>
+<p>然后生成</p>
+<p>然后预览</p>
+<p>然后部署到github上去</p>
+<p>然后网上就能看到更新了</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
 </div>
 
                     <footer id="footer">
@@ -222,6 +280,29 @@
         ></canvas>
         <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
         <script src="/js/fireworks.min.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="maoxindong123/giscus"
+    data-repo-id="R_kgDOJwh3jA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJwh3jM4CXRuC"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
         
     </body>
 </html>
