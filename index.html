@@ -171,7 +171,7 @@
 
 <div class="post">
     <a href="/2023/06/17/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
-        <h2 class="post-title">github+hexo搭建主题（正确显示公式）</h2>
+        <h2 class="post-title">github+hexo搭建主题+日常使用方法</h2>
     </a>
     <div class="category-and-date">
         
@@ -203,6 +203,45 @@ page</a></p>
 <p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
 <p>换主题操作如这个，下好改个名就行</p>
+<!--- more -->
+<p><del><a
+target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
+<p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p>
+<p><a target="_blank" rel="noopener" href="https://argvchs.github.io/">超好看主题</a></p>
+<p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p>
+<p>实在不行对着改</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p>
+<p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的custom
+domain一直check失败</p>
+<p>原因是我买的腾讯云，默认解析是2个A类型，记录值是2个IP地址。应该把www的改成CNAME，然后记录值改成username.github.io。这么改完就check成功了，如图</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png" /></p>
+<h1 id="日常用法">日常用法：</h1>
+<p>写好md，复制到blog里的<code>source/_post</code>里，</p>
+<p>然后添加front
+matter（必须在md的开头，打---，然后回车）,例如本篇：</p>
+<pre class="markdown"><code>title: github+hexo搭建主题+日常使用方法
+date: 2023-06-17 16:41:17
+tags:
+    - hexo
+    - github
+categories: tutorial</code></pre>
+<p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p>
+<pre class="markdown"><code>&lt;!--- more --&gt;</code></pre>
+<p>进到博客根目录</p>
+<pre class="cmd"><code>hexo clean
+hexo g
+hexo s
+hexo d</code></pre>
+<p>先删除之前生成的</p>
+<p>然后生成</p>
+<p>然后预览</p>
+<p>然后部署到github上去</p>
+<p>然后网上就能看到更新了</p>
+
             
         </div>
     </div>
@@ -220,7 +259,7 @@ page</a></p>
         
         <span class="tag">
             
-            <a href="/tags/github/" style="color: #ffa2c4">github</a>
+            <a href="/tags/github/" style="color: #03a9f4">github</a>
         </span>
         
     </div>
@@ -273,12 +312,12 @@ src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/2023061211
         
         <span class="tag">
             
-            <a href="/tags/SLAM/" style="color: #00bcd4">SLAM</a>
+            <a href="/tags/SLAM/" style="color: #ffa2c4">SLAM</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/CV/" style="color: #ffa2c4">CV</a>
+            <a href="/tags/CV/" style="color: #03a9f4">CV</a>
         </span>
         
     </div>

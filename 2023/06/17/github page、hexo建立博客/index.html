@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>github+hexo搭建主题（正确显示公式） | MXD の 大house</title>
+        <title>github+hexo搭建主题+日常使用方法 | MXD の 大house</title>
         <meta name="author" content="MXD" />
         <meta name="description" content="MXD need one corgi!" />
         <meta name="keywords" content="" />
@@ -153,7 +153,7 @@
                 <div id="main" v-show="!loading">
                     <div class="article">
     <div>
-        <h1>github+hexo搭建主题（正确显示公式）</h1>
+        <h1>github+hexo搭建主题+日常使用方法</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/hexo/" style="color: #00bcd4">hexo</a>
+                <a href="/tags/hexo/" style="color: #ff7d73">hexo</a>
             </span>
             
             <span class="tag">
@@ -200,7 +200,7 @@ page</a></p>
 <p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
 <p>换主题操作如这个，下好改个名就行</p>
-<span id="more"></span>
+<!--- more -->
 <p><del><a
 target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
 <p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p>
@@ -220,7 +220,7 @@ src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/2023061723
 <p>写好md，复制到blog里的<code>source/_post</code>里，</p>
 <p>然后添加front
 matter（必须在md的开头，打---，然后回车）,例如本篇：</p>
-<pre class="markdown"><code>title: github+hexo搭建主题（正确显示公式）
+<pre class="markdown"><code>title: github+hexo搭建主题+日常使用方法
 date: 2023-06-17 16:41:17
 tags:
     - hexo
@@ -229,7 +229,7 @@ categories: tutorial</code></pre>
 <p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p>
 <pre class="markdown"><code>&lt;!--- more --&gt;</code></pre>
 <p>进到博客根目录</p>
-<pre><code>hexo clean
+<pre class="cmd"><code>hexo clean
 hexo g
 hexo s
 hexo d</code></pre>
