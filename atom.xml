@@ -6,7 +6,7 @@
   <link href="https://maoxindong123.github.io/atom.xml" rel="self"/>
   
   <link href="https://maoxindong123.github.io/"/>
-  <updated>2023-06-22T00:33:59.371Z</updated>
+  <updated>2023-06-22T00:35:07.072Z</updated>
   <id>https://maoxindong123.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://maoxindong123.github.io/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
     <id>https://maoxindong123.github.io/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</id>
     <published>2023-06-17T08:41:17.000Z</published>
-    <updated>2023-06-22T00:33:59.371Z</updated>
+    <updated>2023-06-22T00:35:07.072Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="搭建方法">搭建方法：</h1><p><ahref="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和githubpage</a></p><p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p><p><a href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p><p>换主题操作如这个，下好改个名就行</p><span id="more"></span><p><del><ahref="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p><p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p><p><a href="https://argvchs.github.io/">超好看主题</a></p><p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p><p><ahref="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p><p>实在不行对着改</p><p><ahref="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p><p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的customdomain一直check失败</p><p>原因是我买的腾讯云，默认解析是2个A类型，记录值是2个IP地址。应该把www的改成CNAME，然后记录值改成username.github.io。这么改完就check成功了，如图</p><p><imgsrc="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png" /></p><h1 id="日常用法">日常用法：</h1><p>写好md，复制到blog里的<code>source/_post</code>里，</p><p>然后添加frontmatter（必须在md的开头，打---，然后回车）,例如本篇：</p><pre class="markdown"><code>title: github+hexo搭建主题+日常使用方法date: 2023-06-17 16:41:17tags:    - hexo    - githubcategories: tutorial</code></pre><p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p><pre class="markdown"><code>&lt;!-- more --&gt;</code></pre><p>进到博客根目录</p><pre class="cmd"><code>hexo cleanhexo ghexo shexo d</code></pre><p>先删除之前生成的</p><p>然后生成</p><p>然后预览</p><p>然后部署到github上去</p><p>然后网上就能看到更新了</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="搭建方法">搭建方法：</h1><p><ahref="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和githubpage</a></p><p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p><p><a href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p><p>换主题操作如这个，下好改个名就行</p><span id="more"></span><p><del><ahref="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p><p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p><p><a href="https://argvchs.github.io/">超好看主题</a></p><p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p><p><ahref="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p><p>实在不行对着改</p><p><ahref="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p><p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的customdomain一直check失败</p><p>原因是我买的腾讯云，默认解析是2个A类型，记录值是2个IP地址。应该把www的改成CNAME，然后记录值改成username.github.io。这么改完就check成功了，如图</p><p><imgsrc="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png" /></p><h1 id="日常用法">日常用法：</h1><p>写好md，复制到blog里的<code>source/_post</code>里，</p><p>然后添加frontmatter（必须在md的开头，打---，然后回车）,例如本篇：</p><pre class="markdown"><code>title: github+hexo搭建主题+日常使用方法date: 2023-06-17 16:41:17tags:    - hexo    - githubcategories: tutorial</code></pre><p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p><pre class="markdown"><code>&lt;!-- more --&gt;</code></pre><p>进到博客根目录</p><pre class="cmd"><code>hexo cleanhexo ghexo shexo d</code></pre><p>先删除之前生成的</p><p>然后生成</p><p>然后预览</p><p>然后部署到github上去</p><p>然后网上就能看到更新了</p><h1 id="一些trick">一些trick</h1><ol type="1"><li><ahref="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></li></ol>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;搭建方法&quot;&gt;搭建方法：&lt;/h1&gt;
