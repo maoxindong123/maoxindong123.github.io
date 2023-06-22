@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://maoxindong123.github.io/2023/06/17/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://maoxindong123.github.io/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</loc>
     
-    <lastmod>2023-06-21</lastmod>
+    <lastmod>2023-06-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong123.github.io/2023/06/10/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/</loc>
+    <loc>https://maoxindong123.github.io/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/</loc>
     
     <lastmod>2023-06-17</lastmod>
     
@@ -29,20 +29,6 @@
 
   
   <url>
-    <loc>https://maoxindong123.github.io/tags/hexo/</loc>
-    <lastmod>2023-06-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://maoxindong123.github.io/tags/github/</loc>
-    <lastmod>2023-06-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://maoxindong123.github.io/tags/SLAM/</loc>
     <lastmod>2023-06-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -56,17 +42,31 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://maoxindong123.github.io/categories/tutorial/</loc>
+    <loc>https://maoxindong123.github.io/tags/hexo/</loc>
     <lastmod>2023-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
+    <loc>https://maoxindong123.github.io/tags/github/</loc>
+    <lastmod>2023-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
     <loc>https://maoxindong123.github.io/categories/CV/</loc>
+    <lastmod>2023-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong123.github.io/categories/tutorial/</loc>
     <lastmod>2023-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
