@@ -3,11 +3,11 @@
   <title>MXD の 大house</title>
   
   
-  <link href="https://maoxindong123.github.io/atom.xml" rel="self"/>
+  <link href="https://maoxindong.top/atom.xml" rel="self"/>
   
-  <link href="https://maoxindong123.github.io/"/>
+  <link href="https://maoxindong.top/"/>
   <updated>2023-06-27T11:04:11.275Z</updated>
-  <id>https://maoxindong123.github.io/</id>
+  <id>https://maoxindong.top/</id>
   
   <author>
     <name>MXD</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>github+hexo搭建主题+日常使用方法</title>
-    <link href="https://maoxindong123.github.io/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://maoxindong123.github.io/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</id>
+    <link href="https://maoxindong.top/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://maoxindong.top/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</id>
     <published>2023-06-17T08:41:17.000Z</published>
     <updated>2023-06-27T11:04:11.275Z</updated>
     
@@ -36,19 +36,19 @@ page&lt;/a&gt;&lt;/p&gt;
     
     
     
-    <category term="tutorial" scheme="https://maoxindong123.github.io/categories/tutorial/"/>
+    <category term="tutorial" scheme="https://maoxindong.top/categories/tutorial/"/>
     
     
-    <category term="hexo" scheme="https://maoxindong123.github.io/tags/hexo/"/>
+    <category term="hexo" scheme="https://maoxindong.top/tags/hexo/"/>
     
-    <category term="github" scheme="https://maoxindong123.github.io/tags/github/"/>
+    <category term="github" scheme="https://maoxindong.top/tags/github/"/>
     
   </entry>
   
   <entry>
     <title>相机模型和多视几何</title>
-    <link href="https://maoxindong123.github.io/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/"/>
-    <id>https://maoxindong123.github.io/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/</id>
+    <link href="https://maoxindong.top/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/"/>
+    <id>https://maoxindong.top/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/</id>
     <published>2023-06-10T08:41:17.000Z</published>
     <updated>2023-06-17T09:24:22.451Z</updated>
     
@@ -65,12 +65,12 @@ src=&quot;https://raw.githubusercontent.com/maoxindong123/my_pictures/main/20230
     
     
     
-    <category term="CV" scheme="https://maoxindong123.github.io/categories/CV/"/>
+    <category term="CV" scheme="https://maoxindong.top/categories/CV/"/>
     
     
-    <category term="SLAM" scheme="https://maoxindong123.github.io/tags/SLAM/"/>
+    <category term="SLAM" scheme="https://maoxindong.top/tags/SLAM/"/>
     
-    <category term="CV" scheme="https://maoxindong123.github.io/tags/CV/"/>
+    <category term="CV" scheme="https://maoxindong.top/tags/CV/"/>
     
   </entry>
   
