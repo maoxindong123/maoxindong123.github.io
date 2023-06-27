@@ -77,7 +77,8 @@
     border-top: 1px solid #aaa;
     color: #5c6b72;
     margin: auto;
-    width: 900px;
+    /*width: 900px;*/
+    width: 1200px;
 }
 #footer #footer-wrap div {
     margin: 15px;
@@ -474,10 +475,12 @@
     font-size: 15px;
     margin: auto;
     margin-top: 100px;
-    padding: 20px;
+    /*padding: 20px;*/
+    padding: 0;
 }
 .article .content {
     margin: 50px 0;
+    /*margin: 0 0;*/
 }
 .article .info .date {
     color: #5c6b72;
@@ -827,7 +830,8 @@ ol li {
         transform: rotate(480deg);
     }
 }
-@media (min-width: 900px) {
+/*@media (min-width: 900px) {*/
+@media (min-width: 1200px) {
     #home-head #home-info .info .wrap {
         padding: 25px;
     }
@@ -878,7 +882,8 @@ ol li {
     .article,
     #archives,
     #footer #footer-wrap {
-        width: 900px;
+        /*width: 900px;*/
+        width: 1200px;
     }
     .home-posts-wrap-no-card #home-posts {
         margin: auto;
@@ -888,7 +893,8 @@ ol li {
         padding-left: 40px;
     }
 }
-@media (min-width: 900px) and (max-width: 1200px) {
+/*@media (min-width: 900px) and (max-width: 1200px) {*/
+@media (min-width: 1200px) and (max-width: 1200px) {
     #home-card {
         display: none;
     }
@@ -900,7 +906,8 @@ ol li {
         width: 800px;
     }
 }
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {*/
+@media (max-width: 1200px) {
     #home-head #home-info {
         height: 350px;
         width: 350px;
