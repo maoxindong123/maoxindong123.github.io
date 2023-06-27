@@ -180,12 +180,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/hexo/" style="color: #00bcd4">hexo</a>
+                <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/github/" style="color: #00bcd4">github</a>
+                <a href="/tags/github/" style="color: #ff7d73">github</a>
             </span>
             
         </span>
@@ -194,7 +194,6 @@
     
     <div class="content" v-pre>
         <h1 id="搭建方法">搭建方法：</h1>
-<p>flag</p>
 <p><a
 target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
 page</a></p>
@@ -241,8 +240,19 @@ hexo d</code></pre>
 <p>然后网上就能看到更新了</p>
 <h1 id="一些trick">一些trick</h1>
 <ol type="1">
-<li><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></li>
+<li><p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></p></li>
+<li><p>修改文章的显示宽度（根本不懂html，胡蒙的）</p>
+<p>也就是从下面的上图改成下图</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271744625.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271745845.png" /></p>
+<p>实际上这个主题随着浏览器的宽度自适应，但按我的浏览器的常用宽度，左右两侧分别会有大片空白，所以把内容区域改宽点好使</p>
+<p>在<code>particle\source\css\main.css</code>里ctrl+F搜900px，会有6个结果，把后面5个改成想要的数字，例如我改成1200px了</p>
+<p>例如找到的第2个改成下图，其余4个类似</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271743264.png" /></p></li>
 </ol>
 
     </div>

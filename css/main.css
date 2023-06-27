@@ -475,8 +475,8 @@
     font-size: 15px;
     margin: auto;
     margin-top: 100px;
-    /*padding: 20px;*/
-    padding: 0;
+    padding: 20px;
+    /*padding: 0;*/
 }
 .article .content {
     margin: 50px 0;
@@ -677,6 +677,7 @@ blockquote {
     border-left: 3px solid #1e3e3f;
     border-radius: 3px;
     margin: 15px 0;
+    /*margin: auto;*/
     overflow: auto;
     padding: 0 15px;
 }
