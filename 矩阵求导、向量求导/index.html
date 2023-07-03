@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/math/" style="color: #00bcd4">math</a>
+                <a href="/tags/math/" style="color: #ffa2c4">math</a>
             </span>
             
         </span>
@@ -188,23 +188,7 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="overview">Overview</h1>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24709748">矩阵求导术上</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/288541909">矩阵求导的数学推导第3篇</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/10773942.html">刘建平的矩阵求导</a></p>
-<p>求导术一直强调导数和微分的区别？微分运算性质多？例如他说不能说AX对X的导数为A，但他有<span
-class="math inline">\(d(AX)=dA\cdot
-X+AdX=AdX\)</span>这是不是一样的？</p>
-<p>看起来结构大概是这样的，和中学的标量求导类似，分用定义求和用法则求，实际求导的时候基本上都是用法则求</p>
-<span id="more"></span>
-<p>法则求是基于微分来求的，这里要注意微分和导数的区别（虽然我还不知道是啥区别），然后通常会套一个tr，因为求出来的是标量，套了tr和没套一样，但tr里的矩阵运算会有交换律。所以用法则求，其实就是知道矩阵微分的几条法则、tr内矩阵运算的几条法则（这些法则都差不多一眼能看出），然后就可以开始实战了</p>
-<p>后面写的话，结果也是大概这样，先介绍基本情况（目前是只介绍标量对矩阵or向量求导，因为平常只用到了这个），然后介绍定义求，然后介绍法则求，法则求的话先介绍矩阵微分性质、tr内矩阵运算性质，然后再用几个简单实战，然后是链式求导，然后再有实战</p>
-<p>TODO：微分和导数为啥性质不一样</p>
-<hr />
-<p>开始</p>
-<h1 id="基本情况">1. 基本情况</h1>
+        <h1 id="基本情况">1. 基本情况</h1>
 <p>机器学习中每次学一个模型都会遇到对向量or矩阵求导的情况，然后就每次都卡壳，所以不如先把这个学了</p>
 <p>回忆学习标量求导，会分用定义求（<span
 class="math inline">\(f&#39;(x)=\lim_{\Delta x\rightarrow

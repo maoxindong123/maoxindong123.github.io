@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://maoxindong.top/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E3%80%81%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC/</loc>
+    
+    <lastmod>2023-07-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/tags/</loc>
     
     <lastmod>2023-06-28</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://maoxindong.top/about/</loc>
-    
-    <lastmod>2023-06-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://maoxindong.top/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E3%80%81%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC/</loc>
     
     <lastmod>2023-06-28</lastmod>
     
@@ -58,7 +58,7 @@
 
   <url>
     <loc>https://maoxindong.top/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -66,35 +66,35 @@
   
   <url>
     <loc>https://maoxindong.top/tags/hexo/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/tags/github/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/tags/SLAM/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/tags/CV/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/tags/math/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -103,21 +103,21 @@
   
   <url>
     <loc>https://maoxindong.top/categories/tutorial/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/categories/CV/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://maoxindong.top/categories/math/</loc>
-    <lastmod>2023-06-28</lastmod>
+    <lastmod>2023-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
