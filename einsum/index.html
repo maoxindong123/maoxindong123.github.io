@@ -191,7 +191,7 @@
         <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/361209187">参考博客</a></p>
 <p>MoCo代码实现里有einsum，einsum叫爱因斯坦求和，可以用于向量内积，向量外积，矩阵乘法，转置和张量收缩等各种操作</p>
 <span id="more"></span>
-<pre><code>a = torch.rand(2,3)
+<pre class="python"><code>a = torch.rand(2,3)
 b = torch.rand(3,4)
 c = torch.einsum(&quot;ik,kj-&gt;ij&quot;, [a, b])</code></pre>
 <p>einsum有2个参数，字符串和参数列表</p>
