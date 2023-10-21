@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://maoxindong.top/batchnorm%E5%92%8Clayernorm/</loc>
+    
+    <lastmod>2023-10-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/einsum/</loc>
     
     <lastmod>2023-10-21</lastmod>
@@ -74,6 +83,13 @@
 
   
   <url>
+    <loc>https://maoxindong.top/tags/deeplearning/</loc>
+    <lastmod>2023-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/tags/pytorch/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -95,13 +111,6 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/math/</loc>
-    <lastmod>2023-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://maoxindong.top/tags/SLAM/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -115,7 +124,21 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://maoxindong.top/tags/math/</loc>
+    <lastmod>2023-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>https://maoxindong.top/categories/deeplearning/</loc>
+    <lastmod>2023-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://maoxindong.top/categories/pytorch/</loc>
@@ -132,14 +155,14 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/math/</loc>
+    <loc>https://maoxindong.top/categories/CV/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/CV/</loc>
+    <loc>https://maoxindong.top/categories/math/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
