@@ -6,7 +6,7 @@
   <link href="https://maoxindong.top/atom.xml" rel="self"/>
   
   <link href="https://maoxindong.top/"/>
-  <updated>2023-10-21T02:37:19.850Z</updated>
+  <updated>2023-10-21T03:05:49.614Z</updated>
   <id>https://maoxindong.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://maoxindong.top/einsum/"/>
     <id>https://maoxindong.top/einsum/</id>
     <published>2023-10-19T16:00:00.000Z</published>
-    <updated>2023-10-21T02:37:19.850Z</updated>
+    <updated>2023-10-21T03:05:49.614Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/361209187">参考博客</a></p><p>MoCo代码实现里有einsum，einsum叫爱因斯坦求和，可以用于向量内积，向量外积，矩阵乘法，转置和张量收缩等各种操作</p><span id="more"></span><pre class="python"><code>a = torch.rand(2,3)b = torch.rand(3,4)c = torch.einsum(&quot;ik,kj-&gt;ij&quot;, [a, b])</code></pre><p>einsum有2个参数，字符串和参数列表</p><p>字符串包括2种字符：</p><p>自由索引，出现在箭头右边的索引，比如上面的例子就是 i 和 j</p><p>求和索引，只出现在箭头左边的索引比如上面的例子就是 k</p><p>计算规则：</p><p>表达式会等价于1个外循环套1个内循环</p><p>外循环是按照右式的字符进行循环，例如例子中是ij，所以是下面</p><pre class="python"><code>for i in range():    for j in range():</code></pre><p>内循环会沿着只出现在左式的字符进行求和（如果只有1个输入）or相乘求和（如果有<spanclass="math inline">\(\ge 2\)</span>个输入）</p><pre class="python"><code>sum=0for k in range():    sum+= a[i,k]*b[k,j]c[i,j]=sum</code></pre><p>求和的式子中，有几个输入就几个输入相乘，下标看左式（就是a[i,k]*b[k,j]）</p><p>求完和赋值给结果，结果的下标看右式（就是c[i,j]）</p><p>综合理解直接看第13个例子即可</p><p>13个einsum的例子：</p><ol type="1"><li><pre class="python"><code> b=torch.einsum(&#39;ii-&gt;i&#39;, [a]) for i in range(i):     for i in range(i):         sum=0         sum+=a[i,i]         b[i]=sum</code></pre></li></ol><p>外循环沿i遍历，内循环无，所以是<spanclass="math inline">\(a[i,j]\)</span></p><p>结果是取出了a的对角线元素</p><ol start="2" type="1"><li><code>python     torch.einsum('ij-&gt;ji', [a])</code></li></ol><p>一眼转置</p><ol start="3" type="1"><li><code>python     torch.einsum('...ij-&gt;...ji', [a])</code></li></ol><p>高维张量的某些维度转置</p><ol start="4" type="1"><li><code>python     torch.einsum('ij-&gt;', [a])</code></li></ol><p>省略需要连-&gt;都省，这个没省，所以不是省略情况</p><p>外循环无，内循环沿i、j相加求和，所以是逐元素相加</p><ol start="5" type="1"><li><code>python     torch.einsum('ij-&gt;j', [a])</code></li></ol><p>外循环沿j，内循环沿i求和，所以是按行求和</p><ol start="6" type="1"><li><code>python     torch.einsum('ik,k-&gt;i', [a, b])</code></li></ol><p>矩阵乘法</p><ol start="7" type="1"><li><code>python     torch.einsum('ik,kj-&gt;ij', [a, b])</code></li></ol><p>还是矩阵乘法</p><ol start="8" type="1"><li><code>python     torch.einsum('i,i-&gt;', [a, b])</code></li></ol><p>i只在左边出现，或者说i是不同输入的重复维度，所以沿着i相乘求和，所以是向量内积</p><ol start="9" type="1"><li><code>python     torch.einsum('ij,ij-&gt;', [a, b])</code></li></ol><p>无外循环，内循环沿i、j遍历，会相乘并相加</p><p>最后结果就是a和b逐元素相乘后逐元素相加</p><ol start="10" type="1"><li><code>python     torch.einsum('i,j-&gt;ij', [a, b])</code></li></ol><p>外循环沿i、j遍历，无内循环，所以<span class="math inline">\(a[i]\b[j]\)</span>相乘</p><ol start="11" type="1"><li><code>python     torch.einsum('ijk,ikl-&gt;ijl', [a, b])</code></li></ol><p>矩阵乘法</p><ol start="12" type="1"><li><code>python     torch.einsum('pqrs,tuqvr-&gt;pstuv', [a, b])</code></li></ol><p>很高维，外循环沿着pstuv，内循环沿着qr进行相乘再求和</p><ol start="13" type="1"><li><pre class="python"><code>d=torch.einsum(&#39;ik,jkl,il-&gt;ij&#39;, [a, b, c])for i    for j        sum=0        for k            sum+=a[i,k]*b[j,k,l]*c[i,l]       d[i,j]=sum</code></pre></li></ol><p>外循环沿ij，内循环沿k</p><p>如果是3个输入，则内循环求和时就变成了3个相乘再求和（按照左式进行索引即可）</p>]]></content>
     
@@ -31,7 +31,7 @@
     
     
     
-    <category term="code" scheme="https://maoxindong.top/categories/code/"/>
+    <category term="pytorch" scheme="https://maoxindong.top/categories/pytorch/"/>
     
     
     <category term="pytorch" scheme="https://maoxindong.top/tags/pytorch/"/>
