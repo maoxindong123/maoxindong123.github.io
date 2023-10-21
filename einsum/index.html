@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Tags: SLAM | MXD の 大house</title>
+        <title>einsum爱因斯坦求和 | MXD の 大house</title>
         <meta name="author" content="MXD" />
         <meta name="description" content="MXD need one corgi!" />
         <meta name="keywords" content="" />
@@ -32,6 +32,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -147,119 +151,151 @@
 
             <transition name="into">
                 <div id="main" v-show="!loading">
-                    <div id="archives">
-    
-    <div class="categories-tags">
+                    <div class="article">
+    <div>
+        <h1>einsum爱因斯坦求和</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/20
+        </span>
         
-        
-        <span>
-            <a href="/tags/pytorch/" style="background: #03a9f4">
+        <span class="category">
+            <a href="/categories/code/">
                 <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                pytorch
+                code
             </a>
         </span>
         
         
-        
-        <span>
-            <a href="/tags/hexo/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                hexo
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/pytorch/" style="color: #ffa2c4">pytorch</a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/tags/github/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                github
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/math/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                math
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/SLAM/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                SLAM
-            </a>
-        </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/tags/CV/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                CV
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/6/10</div>
-            <a href="/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95unfinished/">
-                <h3>相机模型和多视几何</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/CV/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        CV
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/SLAM/" style="color: #00a596">SLAM</a>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/CV/" style="color: #ffa2c4">CV</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/361209187">参考博客</a></p>
+<p>MoCo代码实现里有einsum，einsum叫爱因斯坦求和，可以用于向量内积，向量外积，矩阵乘法，转置和张量收缩等各种操作</p>
+<span id="more"></span>
+<pre><code>a = torch.rand(2,3)
+b = torch.rand(3,4)
+c = torch.einsum(&quot;ik,kj-&gt;ij&quot;, [a, b])</code></pre>
+<p>einsum有2个参数，字符串和参数列表</p>
+<p>字符串包括2种字符：</p>
+<p>自由索引，出现在箭头右边的索引，比如上面的例子就是 i 和 j</p>
+<p>求和索引，只出现在箭头左边的索引比如上面的例子就是 k</p>
+<p>计算规则：</p>
+<p>表达式会等价于1个外循环套1个内循环</p>
+<p>外循环是按照右式的字符进行循环，例如例子中是ij，所以是下面</p>
+<pre class="python"><code>for i in range():
+    for j in range():</code></pre>
+<p>内循环会沿着只出现在左式的字符进行求和（如果只有1个输入）or相乘求和（如果有<span
+class="math inline">\(\ge 2\)</span>个输入）</p>
+<pre class="python"><code>sum=0
+for k in range():
+    sum+= a[i,k]*b[k,j]
+c[i,j]=sum</code></pre>
+<p>求和的式子中，有几个输入就几个输入相乘，下标看左式（就是a[i,k]*b[k,j]）</p>
+<p>求完和赋值给结果，结果的下标看右式（就是c[i,j]）</p>
+<p>综合理解直接看第13个例子即可</p>
+<p>13个einsum的例子：</p>
+<ol type="1">
+<li><pre class="python"><code> b=torch.einsum(&#39;ii-&gt;i&#39;, [a])
+
+ for i in range(i):
+     for i in range(i):
+         sum=0
+         sum+=a[i,i]
+         b[i]=sum</code></pre></li>
+</ol>
+<p>外循环沿i遍历，内循环无，所以是<span
+class="math inline">\(a[i,j]\)</span></p>
+<p>结果是取出了a的对角线元素</p>
+<ol start="2" type="1">
+<li><code>python     torch.einsum('ij-&gt;ji', [a])</code></li>
+</ol>
+<p>一眼转置</p>
+<ol start="3" type="1">
+<li><code>python     torch.einsum('...ij-&gt;...ji', [a])</code></li>
+</ol>
+<p>高维张量的某些维度转置</p>
+<ol start="4" type="1">
+<li><code>python     torch.einsum('ij-&gt;', [a])</code></li>
+</ol>
+<p>省略需要连-&gt;都省，这个没省，所以不是省略情况</p>
+<p>外循环无，内循环沿i、j相加求和，所以是逐元素相加</p>
+<ol start="5" type="1">
+<li><code>python     torch.einsum('ij-&gt;j', [a])</code></li>
+</ol>
+<p>外循环沿j，内循环沿i求和，所以是按行求和</p>
+<ol start="6" type="1">
+<li><code>python     torch.einsum('ik,k-&gt;i', [a, b])</code></li>
+</ol>
+<p>矩阵乘法</p>
+<ol start="7" type="1">
+<li><code>python     torch.einsum('ik,kj-&gt;ij', [a, b])</code></li>
+</ol>
+<p>还是矩阵乘法</p>
+<ol start="8" type="1">
+<li><code>python     torch.einsum('i,i-&gt;', [a, b])</code></li>
+</ol>
+<p>i只在左边出现，或者说i是不同输入的重复维度，所以沿着i相乘求和，所以是向量内积</p>
+<ol start="9" type="1">
+<li><code>python     torch.einsum('ij,ij-&gt;', [a, b])</code></li>
+</ol>
+<p>无外循环，内循环沿i、j遍历，会相乘并相加</p>
+<p>最后结果就是a和b逐元素相乘后逐元素相加</p>
+<ol start="10" type="1">
+<li><code>python     torch.einsum('i,j-&gt;ij', [a, b])</code></li>
+</ol>
+<p>外循环沿i、j遍历，无内循环，所以<span class="math inline">\(a[i]\
+b[j]\)</span>相乘</p>
+<ol start="11" type="1">
+<li><code>python     torch.einsum('ijk,ikl-&gt;ijl', [a, b])</code></li>
+</ol>
+<p>矩阵乘法</p>
+<ol start="12" type="1">
+<li><code>python     torch.einsum('pqrs,tuqvr-&gt;pstuv', [a, b])</code></li>
+</ol>
+<p>很高维，外循环沿着pstuv，内循环沿着qr进行相乘再求和</p>
+<ol start="13" type="1">
+<li><pre class="python"><code>d=torch.einsum(&#39;ik,jkl,il-&gt;ij&#39;, [a, b, c])
+
+for i
+    for j
+        sum=0
+        for k
+            sum+=a[i,k]*b[j,k,l]*c[i,l]
+       d[i,j]=sum</code></pre></li>
+</ol>
+<p>外循环沿ij，内循环沿k</p>
+<p>如果是3个输入，则内循环求和时就变成了3个相乘再求和（按照左式进行索引即可）</p>
+
     </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
     
 </div>
 
@@ -298,6 +334,29 @@
         ></canvas>
         <script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
         <script src="/js/fireworks.min.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="maoxindong123/giscus"
+    data-repo-id="R_kgDOJwh3jA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJwh3jM4CXRuC"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
         
     </body>
 </html>
