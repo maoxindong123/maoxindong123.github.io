@@ -74,13 +74,6 @@
 
   
   <url>
-    <loc>https://maoxindong.top/tags/pytorch/</loc>
-    <lastmod>2023-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://maoxindong.top/tags/hexo/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -95,7 +88,7 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/math/</loc>
+    <loc>https://maoxindong.top/tags/pytorch/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -115,14 +108,14 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://maoxindong.top/categories/code/</loc>
+    <loc>https://maoxindong.top/tags/math/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
+  
+
   
   <url>
     <loc>https://maoxindong.top/categories/tutorial/</loc>
@@ -132,7 +125,7 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/math/</loc>
+    <loc>https://maoxindong.top/categories/code/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -140,6 +133,13 @@
   
   <url>
     <loc>https://maoxindong.top/categories/CV/</loc>
+    <lastmod>2023-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/categories/math/</loc>
     <lastmod>2023-10-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
