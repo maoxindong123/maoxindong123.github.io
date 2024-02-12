@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://maoxindong.top/true-record/</loc>
+    
+    <lastmod>2024-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/batchnorm%E5%92%8Clayernorm/</loc>
     
     <lastmod>2023-10-21</lastmod>
@@ -83,6 +92,13 @@
 
   
   <url>
+    <loc>https://maoxindong.top/tags/pytorch/</loc>
+    <lastmod>2024-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/tags/deeplearning/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -90,7 +106,14 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/pytorch/</loc>
+    <loc>https://maoxindong.top/tags/slam/</loc>
+    <lastmod>2024-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/tags/orb/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -134,6 +157,13 @@
 
   
   <url>
+    <loc>https://maoxindong.top/categories/pytorch/</loc>
+    <lastmod>2024-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://maoxindong.top/categories/deeplearning/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -141,7 +171,7 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/pytorch/</loc>
+    <loc>https://maoxindong.top/categories/slam/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
