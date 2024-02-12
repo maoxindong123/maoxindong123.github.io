@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://maoxindong.top/true-record/</loc>
+    <loc>https://maoxindong.top/orb%E7%89%B9%E5%BE%81/</loc>
     
     <lastmod>2024-02-12</lastmod>
     
@@ -92,14 +92,14 @@
 
   
   <url>
-    <loc>https://maoxindong.top/tags/pytorch/</loc>
+    <loc>https://maoxindong.top/tags/deeplearning/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/deeplearning/</loc>
+    <loc>https://maoxindong.top/tags/pytorch/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -120,20 +120,6 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/hexo/</loc>
-    <lastmod>2024-02-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://maoxindong.top/tags/github/</loc>
-    <lastmod>2024-02-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://maoxindong.top/tags/SLAM/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -142,6 +128,20 @@
   
   <url>
     <loc>https://maoxindong.top/tags/CV/</loc>
+    <lastmod>2024-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/tags/hexo/</loc>
+    <lastmod>2024-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/tags/github/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -157,14 +157,14 @@
 
   
   <url>
-    <loc>https://maoxindong.top/categories/pytorch/</loc>
+    <loc>https://maoxindong.top/categories/deeplearning/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/deeplearning/</loc>
+    <loc>https://maoxindong.top/categories/pytorch/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -178,14 +178,14 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/tutorial/</loc>
+    <loc>https://maoxindong.top/categories/CV/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/CV/</loc>
+    <loc>https://maoxindong.top/categories/tutorial/</loc>
     <lastmod>2024-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
