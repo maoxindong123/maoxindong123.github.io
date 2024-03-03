@@ -92,20 +92,6 @@
 
   
   <url>
-    <loc>https://maoxindong.top/tags/deeplearning/</loc>
-    <lastmod>2024-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://maoxindong.top/tags/pytorch/</loc>
-    <lastmod>2024-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://maoxindong.top/tags/hexo/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -120,14 +106,21 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/slam/</loc>
+    <loc>https://maoxindong.top/tags/deeplearning/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/orb/</loc>
+    <loc>https://maoxindong.top/tags/pytorch/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/tags/math/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -148,13 +141,27 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/tags/math/</loc>
+    <loc>https://maoxindong.top/tags/slam/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://maoxindong.top/tags/orb/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
 
+  
+  <url>
+    <loc>https://maoxindong.top/categories/tutorial/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://maoxindong.top/categories/deeplearning/</loc>
@@ -171,14 +178,7 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/tutorial/</loc>
-    <lastmod>2024-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://maoxindong.top/categories/slam/</loc>
+    <loc>https://maoxindong.top/categories/math/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -192,7 +192,7 @@
   </url>
   
   <url>
-    <loc>https://maoxindong.top/categories/math/</loc>
+    <loc>https://maoxindong.top/categories/slam/</loc>
     <lastmod>2024-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
