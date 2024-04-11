@@ -195,8 +195,14 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><strong>按时间顺序，把NeRF相关论文今天结束了（先把我这Point-SLAM, Loopy-SLAM这条线结束，然后搜NeRF的后续工作中有代表性的（速度最快的和渲染质量最好的Mip-NeRF），把有代表性的看一看，就算结束NeRF了，然后是gaussian splatting</strong></p>
-<p>感觉遇到坑基本上都是因为，这篇论文是另篇论文的改进，然后这篇论文直接接着另篇说，所以不看另篇就看不懂。eg. NICE-SLAM的occupancy value我一直不知道是啥意思，占用不是只有0 or 1吗，结果看了它的上一篇iMAP，里面直接说了体密度转为occupancy value然后计算光线在该体素停止的概率</p>
+            <h1 id="todo">TODO</h1>
+<p><strong>按时间顺序，把NeRF相关论文今天结束了（先把我这Point-SLAM,
+Loopy-SLAM这条线结束，然后搜NeRF的后续工作中有代表性的（速度最快的和渲染质量最好的Mip-NeRF），把有代表性的看一看，就算结束NeRF了，然后是gaussian
+splatting</strong></p>
+<p>感觉遇到坑基本上都是因为，这篇论文是另篇论文的改进，然后这篇论文直接接着另篇说，所以不看另篇就看不懂。eg.
+NICE-SLAM的occupancy value我一直不知道是啥意思，占用不是只有0 or
+1吗，结果看了它的上一篇iMAP，里面直接说了体密度转为occupancy
+value然后计算光线在该体素停止的概率</p>
             
         </div>
     </div>
@@ -209,12 +215,12 @@
         
         <span class="tag">
             
-            <a href="/tags/paper/" style="color: #ffa2c4">paper</a>
+            <a href="/tags/paper/" style="color: #ff7d73">paper</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/nerf/" style="color: #03a9f4">nerf</a>
+            <a href="/tags/nerf/" style="color: #ff7d73">nerf</a>
         </span>
         
     </div>
@@ -248,8 +254,15 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="ORB特征检测"><a href="#ORB特征检测" class="headerlink" title="ORB特征检测"></a>ORB特征检测</h1><p>ORB特征检测分：提取关键点、计算描述子、暴力匹配</p>
-<p>提取关键点一般会先建立图像金字塔，然后对每一层单独地提取关键点。判断是否为关键点的依据是：选当前点周围的16个点（<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240212234944093.png">16个点的图</a>），看是否有连续的N个点的像素值都大于当前点的像素值$I_p$一定量$T$或者小于，即$(i_1\gt I_p+T\bigcap i_2\gt I_p+T \bigcap … )\bigcup (i_1\lt I_p-T\bigcap i_2\lt I_p-T \bigcap … )$。对于关键点再计算一下方向，方向是在关键点周围计算质心然后计算当前点与质心的连线的角度</p>
+            <h1 id="orb特征检测">ORB特征检测</h1>
+<p>ORB特征检测分：提取关键点、计算描述子、暴力匹配</p>
+<p>提取关键点一般会先建立图像金字塔，然后对每一层单独地提取关键点。判断是否为关键点的依据是：选当前点周围的16个点（<a
+target="_blank" rel="noopener" href="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240212234944093.png">16个点的图</a>），看是否有连续的N个点的像素值都大于当前点的像素值<span
+class="math inline">\(I_p\)</span>一定量<span
+class="math inline">\(T\)</span>或者小于，即<span
+class="math inline">\((i_1\gt I_p+T\bigcap i_2\gt I_p+T \bigcap ...
+)\bigcup (i_1\lt I_p-T\bigcap i_2\lt I_p-T \bigcap ...
+)\)</span>。对于关键点再计算一下方向，方向是在关键点周围计算质心然后计算当前点与质心的连线的角度</p>
             
         </div>
     </div>
@@ -262,12 +275,12 @@
         
         <span class="tag">
             
-            <a href="/tags/slam/" style="color: #00bcd4">slam</a>
+            <a href="/tags/slam/" style="color: #ff7d73">slam</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/orb/" style="color: #03a9f4">orb</a>
+            <a href="/tags/orb/" style="color: #00a596">orb</a>
         </span>
         
     </div>
@@ -301,8 +314,12 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <p>参考：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BABPWOkSbLE&feature=youtu.be">李宏毅batchnorm</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647813604">batchnorm解释和layernorm</a></p>
-<p>在优化的过程中，有时候error surface不平稳会使得模型很难收敛，例如峡谷形状，假设有2个特征，1个特征的取值都是100,200…，1个特征的取值是0.1,0.2…，固定学习率会在峡谷中间摆荡，如下的左图，右图是优化器用动量方法解决这个问题，batchnorm也可以解决</p>
+            <p>参考：<a
+target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BABPWOkSbLE&amp;feature=youtu.be">李宏毅batchnorm</a>
+<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647813604">batchnorm解释和layernorm</a></p>
+<p>在优化的过程中，有时候error
+surface不平稳会使得模型很难收敛，例如峡谷形状，假设有2个特征，1个特征的取值都是100,200...，1个特征的取值是0.1,0.2...，固定学习率会在峡谷中间摆荡，如下的左图，右图是优化器用动量方法解决这个问题，batchnorm也可以解决</p>
             
         </div>
     </div>
@@ -315,7 +332,7 @@
         
         <span class="tag">
             
-            <a href="/tags/deeplearning/" style="color: #00bcd4">deeplearning</a>
+            <a href="/tags/deeplearning/" style="color: #03a9f4">deeplearning</a>
         </span>
         
     </div>
@@ -363,7 +380,7 @@
         
         <span class="tag">
             
-            <a href="/tags/pytorch/" style="color: #ffa2c4">pytorch</a>
+            <a href="/tags/pytorch/" style="color: #00a596">pytorch</a>
         </span>
         
     </div>
@@ -397,11 +414,20 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="1-基本情况"><a href="#1-基本情况" class="headerlink" title="1. 基本情况"></a>1. 基本情况</h1><p>机器学习中每次学一个模型都会遇到对向量or矩阵求导的情况，然后就每次都卡壳，所以不如先把这个学了</p>
-<p>回忆学习标量求导，会分用定义求（$f’(x)&#x3D;\lim_{\Delta x\rightarrow 0}{\frac{f(x+\Delta x)-f(x)}{\Delta x}}$）和用法则求（例如$e^x&#x3D;e^x,\frac{f(x)}{g(x)}&#x3D;\frac{f’(x)g(x)-g’(x)f(x)}{g^2(x)}$等等）</p>
+            <h1 id="基本情况">1. 基本情况</h1>
+<p>机器学习中每次学一个模型都会遇到对向量or矩阵求导的情况，然后就每次都卡壳，所以不如先把这个学了</p>
+<p>回忆学习标量求导，会分用定义求（<span
+class="math inline">\(f&#39;(x)=\lim_{\Delta x\rightarrow
+0}{\frac{f(x+\Delta x)-f(x)}{\Delta x}}\)</span>）和用法则求（例如<span
+class="math inline">\(e^x=e^x,\frac{f(x)}{g(x)}=\frac{f&#39;(x)g(x)-g&#39;(x)f(x)}{g^2(x)}\)</span>等等）</p>
 <p>所以对矩阵求导（向量可以视作特殊的矩阵）也会有2种方法，分别是定义求和用法则求</p>
-<p>因为机器学习一般遇到的函数是结果是标量，但自变量是矩阵，这种函数称为矩阵变元的标量函数，例如线性回归$loss(\pmb{\omega},b)&#x3D;\pmb{\omega}^T\pmb{x}+b$，所以本文只记录这种情况，而不讨论矩阵函数对矩阵求导的情况</p>
-<p>符号方面，实数用普通的表示$eg.a$，向量用加粗的表示$eg. \pmb{a}$（向量全是列向量，没行向量），矩阵用大写字母表示$eg. A$</p>
+<p>因为机器学习一般遇到的函数是结果是标量，但自变量是矩阵，这种函数称为矩阵变元的标量函数，例如线性回归<span
+class="math inline">\(loss(\pmb{\omega},b)=\pmb{\omega}^T\pmb{x}+b\)</span>，所以本文只记录这种情况，而不讨论矩阵函数对矩阵求导的情况</p>
+<p>符号方面，实数用普通的表示<span
+class="math inline">\(eg.a\)</span>，向量用加粗的表示<span
+class="math inline">\(eg.
+\pmb{a}\)</span>（向量全是列向量，没行向量），矩阵用大写字母表示<span
+class="math inline">\(eg. A\)</span></p>
             
         </div>
     </div>
@@ -414,7 +440,7 @@
         
         <span class="tag">
             
-            <a href="/tags/math/" style="color: #ff7d73">math</a>
+            <a href="/tags/math/" style="color: #ffa2c4">math</a>
         </span>
         
     </div>
@@ -448,7 +474,10 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="搭建方法："><a href="#搭建方法：" class="headerlink" title="搭建方法："></a>搭建方法：</h1><p><a target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github page</a></p>
+            <h1 id="搭建方法">搭建方法：</h1>
+<p><a
+target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
+page</a></p>
 <p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
 <p>换主题操作如这个，下好改个名就行</p>
@@ -469,7 +498,7 @@
         
         <span class="tag">
             
-            <a href="/tags/github/" style="color: #03a9f4">github</a>
+            <a href="/tags/github/" style="color: #00bcd4">github</a>
         </span>
         
     </div>
@@ -503,8 +532,11 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="相机模型（针孔相机模型）"><a href="#相机模型（针孔相机模型）" class="headerlink" title="相机模型（针孔相机模型）"></a>相机模型（针孔相机模型）</h1><h2 id="针孔相机模型的介绍"><a href="#针孔相机模型的介绍" class="headerlink" title="针孔相机模型的介绍"></a>针孔相机模型的介绍</h2><p>相机模型如图，有相机中心（针孔）、图像平面（这个是等价的图像平面）、焦距f、物理世界的真实的一点P</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121123981.webp"></p>
+            <h1 id="相机模型针孔相机模型">相机模型（针孔相机模型）</h1>
+<h2 id="针孔相机模型的介绍">针孔相机模型的介绍</h2>
+<p>相机模型如图，有相机中心（针孔）、图像平面（这个是等价的图像平面）、焦距f、物理世界的真实的一点P</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121123981.webp" /></p>
 <p>相机模型的作用就是我们对于物理世界拍照的时候，物理世界的每个点会落在我们拍出来的照片的哪个像素上。</p>
 <p>一共有4个坐标系：世界坐标系（随便定义的一个坐标系，可以描述物理世界的任意一个点的坐标，是最大的坐标系）、相机坐标系（如图以相机中心C为原点的坐标系）、图像坐标系（如图以图像中某一点O为原点的坐标系）和像素坐标系（以图像平面的左上角为原点，且每个点都是整数坐标因为是像素的坐标系）</p>
             
@@ -519,12 +551,12 @@
         
         <span class="tag">
             
-            <a href="/tags/SLAM/" style="color: #00a596">SLAM</a>
+            <a href="/tags/SLAM/" style="color: #ff7d73">SLAM</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/CV/" style="color: #03a9f4">CV</a>
+            <a href="/tags/CV/" style="color: #ffa2c4">CV</a>
         </span>
         
     </div>

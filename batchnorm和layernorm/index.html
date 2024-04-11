@@ -179,7 +179,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/deeplearning/" style="color: #00bcd4">deeplearning</a>
+                <a href="/tags/deeplearning/" style="color: #03a9f4">deeplearning</a>
             </span>
             
         </span>
@@ -187,30 +187,45 @@
     </div>
     
     <div class="content" v-pre>
-        <p>参考：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BABPWOkSbLE&feature=youtu.be">李宏毅batchnorm</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647813604">batchnorm解释和layernorm</a></p>
-<p>在优化的过程中，有时候error surface不平稳会使得模型很难收敛，例如峡谷形状，假设有2个特征，1个特征的取值都是100,200…，1个特征的取值是0.1,0.2…，固定学习率会在峡谷中间摆荡，如下的左图，右图是优化器用动量方法解决这个问题，batchnorm也可以解决</p>
+        <p>参考：<a
+target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BABPWOkSbLE&amp;feature=youtu.be">李宏毅batchnorm</a>
+<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647813604">batchnorm解释和layernorm</a></p>
+<p>在优化的过程中，有时候error
+surface不平稳会使得模型很难收敛，例如峡谷形状，假设有2个特征，1个特征的取值都是100,200...，1个特征的取值是0.1,0.2...，固定学习率会在峡谷中间摆荡，如下的左图，右图是优化器用动量方法解决这个问题，batchnorm也可以解决</p>
 <span id="more"></span>
-
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041253146.webp" alt="img"></p>
-<p>既然问题是不同特征的取值可能在数值上差别很大，那把它们规范到一个范围即可，所以batchnorm的方法是把每个特征拉回均值为0方差为1的标准正态分布，后面再做scale and shift</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041257125.png" alt="7508fdea9f4cab74729c5929d8e252e5.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041253146.webp"
+alt="img" /></p>
+<p>既然问题是不同特征的取值可能在数值上差别很大，那把它们规范到一个范围即可，所以batchnorm的方法是把每个特征拉回均值为0方差为1的标准正态分布，后面再做scale
+and shift</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041257125.png"
+alt="7508fdea9f4cab74729c5929d8e252e5.png" /></p>
 <p>这样以来，不管原本是100,200的取值，还是0.1,0.2的取值，都变成了符合标准正态分布的取值</p>
 <p>而layernorm是对每个样本作norm，比如1个样本的各个特征的取值都很大，1个样本的各个特征的取值很小，做完layernorm后都会变得差不多</p>
 <p>复制第2个链接总结的一段话：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BN抹杀了不同特征之间的大小关系，但是保留了不同样本间的大小关系；LN抹杀了不同样本间的大小关系，但是保留了一个样本内不同特征之间的大小关系。</span><br><span class="line">（理解：BN对batch数据的同一特征进行标准化，变换之后，纵向来看，不同样本的同一特征仍然保留了之前的大小关系，但是横向对比样本内部的各个特征之间的大小关系不一定和变换之前一样了，因此抹杀或破坏了不同特征之间的大小关系，保留了不同样本之间的大小关系；LN对单一样本进行标准化，样本内的特征处理后原来数值大的还是相对较大，原来数值小的还是相对较小，不同特征之间的大小关系还是保留了下来，但是不同样本在各自标准化处理之后，两个样本对应位置的特征之间的大小关系将不再确定，可能和处理之前就不一样了，所以破坏了不同样本间的大小关系）</span><br></pre></td></tr></table></figure>
-
 <p>batchnorm的作用：</p>
-<p>按照李宏毅的视频，通常说的Internal Covariate Shift是假的，后面的论文说加与不加batchnorm不怎么影响Internal Covariate Shift，但会使得error surface变得更平滑是真的，例如前面的峡谷，本来1个方向的梯度大，1个方向的梯度小，现在2个方向的梯度差不多大，就更好训练</p>
+<p>按照李宏毅的视频，通常说的Internal Covariate
+Shift是假的，后面的论文说加与不加batchnorm不怎么影响Internal Covariate
+Shift，但会使得error
+surface变得更平滑是真的，例如前面的峡谷，本来1个方向的梯度大，1个方向的梯度小，现在2个方向的梯度差不多大，就更好训练</p>
 <p>batchnorm在图像等二维数据上的用法：</p>
 <p>前面的batchnorm公式是按照全连接层fc之间，各个样本都变成了1维向量，但有batchsize个样本，这样是在batchsize上求平均</p>
 <p>例如batchsize是64，1个样本到了某一层网络是长度为256的1维向量，那么会算出256个均值和方差</p>
 <p>用在2维数据例如cnn之间的时候，现在的形状是[b,c,h,w]，batchnorm2d这个函数会在每个channel上算均值和方差，也就是几个channel就算几个均值和方差，然后1个channel上的所有[b,h,w]就减相同的均值除相同的方差</p>
 <p>例如有2个图，每个图2个通道，高和宽都是2，那么就是[2,2,2,2]，如下图</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041420805.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041420805.png" /></p>
 <p>调用batchnorm2d的输出结果，1234对应的是下图</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041420779.png" alt="image-20231004142017759"></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041420779.png"
+alt="image-20231004142017759" /></p>
 <p>与下面算[b,h,w]的均值方差结果一致</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041422036.png" alt="image-20231004142204017"></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202310041422036.png"
+alt="image-20231004142204017" /></p>
 <p>所以可知，batchnorm2d遇到[b,c,h,w]时是有几个c就算几个mean和std</p>
 <p>batchnorm2d一般后面带个参数就是c</p>
 <p>TODO:看看scale和shift在训练完会变成什么样，原本大的特征在训练完它的scale和shift也大吗</p>

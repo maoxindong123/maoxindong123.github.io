@@ -179,12 +179,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/hexo/" style="color: #03a9f4">hexo</a>
+                <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/github/" style="color: #00bcd4">github</a>
+                <a href="/tags/github/" style="color: #03a9f4">github</a>
             </span>
             
         </span>
@@ -192,53 +192,79 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="搭建方法："><a href="#搭建方法：" class="headerlink" title="搭建方法："></a>搭建方法：</h1><p><a target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github page</a></p>
+        <h1 id="搭建方法">搭建方法：</h1>
+<p><a
+target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
+page</a></p>
 <p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
 <p>换主题操作如这个，下好改个名就行</p>
 <span id="more"></span>
-
-<p><del><a target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
+<p><del><a
+target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
 <p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p>
 <p><a target="_blank" rel="noopener" href="https://argvchs.github.io/">超好看主题</a></p>
 <p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p>
 <p>实在不行对着改</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p>
-<p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的custom domain一直check失败</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p>
+<p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的custom
+domain一直check失败</p>
 <p>原因是我买的腾讯云，默认解析是2个A类型，记录值是2个IP地址。应该把www的改成CNAME，然后记录值改成username.github.io。这么改完就check成功了，如图</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png"></p>
-<h1 id="日常用法："><a href="#日常用法：" class="headerlink" title="日常用法："></a>日常用法：</h1><p>写好md，复制到blog里的<code>source/_post</code>里，</p>
-<p>然后添加front matter（必须在md的开头，打—，然后回车）,例如本篇：</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png" /></p>
+<h1 id="日常用法">日常用法：</h1>
+<p>写好md，复制到blog里的<code>source/_post</code>里，</p>
+<p>然后添加front
+matter（必须在md的开头，打---，然后回车）,例如本篇：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: github+hexo搭建主题+日常使用方法</span><br><span class="line">date: 2023-06-17 16:41:17</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">	-</span> hexo</span><br><span class="line"><span class="bullet">	-</span> github</span><br><span class="line">categories: tutorial</span><br></pre></td></tr></table></figure>
-
 <p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
-
 <p>进到博客根目录</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
 <p>先删除之前生成的</p>
 <p>然后生成</p>
 <p>然后预览</p>
 <p>然后部署到github上去</p>
 <p>然后网上就能看到更新了</p>
-<h1 id="一些trick"><a href="#一些trick" class="headerlink" title="一些trick"></a>一些trick</h1><ol>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></p>
-</li>
+<h1 id="一些trick">一些trick</h1>
+<ol type="1">
+<li><p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></p></li>
 <li><p>修改文章的显示宽度（根本不懂html，胡蒙的）</p>
-<p> 也就是从下面的上图改成下图</p>
-<p> <img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271744625.png"></p>
-<p> <img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271745845.png"></p>
-<p> 实际上这个主题随着浏览器的宽度自适应，但按我的浏览器的常用宽度，左右两侧分别会有大片空白，所以把内容区域改宽点好使</p>
-<p> 在<code>particle\source\css\main.css</code>里ctrl+F搜900px，会有6个结果，全部改成想要的数字，例如我改成1200px了</p>
-<p> 例如找到的第2个改成下图，其余5个类似</p>
-<p> <img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271743264.png"></p>
-</li>
+<p>也就是从下面的上图改成下图</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271744625.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271745845.png" /></p>
+<p>实际上这个主题随着浏览器的宽度自适应，但按我的浏览器的常用宽度，左右两侧分别会有大片空白，所以把内容区域改宽点好使</p>
+<p>在<code>particle\source\css\main.css</code>里ctrl+F搜900px，会有6个结果，全部改成想要的数字，例如我改成1200px了</p>
+<p>例如找到的第2个改成下图，其余5个类似</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271743264.png" /></p></li>
 <li><p>修改正文字体</p>
-<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303160617652.png" alt="image-20240303160617652"></p>
-<p>这个<code>20px</code>原本是<code>15px</code>，改这个</p>
-</li>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303160617652.png"
+alt="image-20240303160617652" /></p>
+<p>这个<code>20px</code>原本是<code>15px</code>，改这个</p></li>
+</ol>
+<h1 id="迁移">迁移</h1>
+<p>换电脑后，即使把hexo文件夹复制过来也不能用，所以下面是新电脑迁移的完整过程（等于重新安装了一遍了）</p>
+<ol type="1">
+<li><p>按照<a
+target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
+page</a>把git等等都弄了，别忘了配置git的username。如果<code>hexo s</code>无法打开可能是端口4000被占用，用<code>hexo s -p 4658</code>就可以打开</p></li>
+<li><p>主题可以直接找之前hexo文件夹里的<code>themes/主题名</code>复制过来，这样前面对主题的修改就直接移过来了</p>
+<p>md也全部复制过来，就差不多了</p></li>
+<li><p>如果输入<code>github.io</code>可以访问，但输入自己域名不能访问，是没添加cname，<a
+target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011203711">添加cname</a></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202404111132950.png"
+alt="image-20240411113200848" /></p></li>
+<li><p>如果公式显示不正确，确实需要按照<a
+target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">Hexo完美支持数学公式</a>走一遍就好了，单纯安装particlex主题不够</p></li>
 </ol>
 
     </div>
