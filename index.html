@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>MXD の 大house</title>
+        <meta name="author" content="MXD" />
+        <meta name="description" content="MXD need one corgi!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/gura_avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 7.1.1"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>MXD の 大HOUSE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MXD の 大HOUSE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>MXD の 大house</h1>
+                <h3></h3>
+                <h5>MXD need one corgi!</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/NeRF%E4%B8%93%E9%A2%98/">
+        <h2 class="post-title">NeRF and so on</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/paper/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                paper
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/9
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><strong>按时间顺序，把NeRF相关论文今天结束了（先把我这Point-SLAM, Loopy-SLAM这条线结束，然后搜NeRF的后续工作中有代表性的（速度最快的和渲染质量最好的Mip-NeRF），把有代表性的看一看，就算结束NeRF了，然后是gaussian splatting</strong></p>
+<p>感觉遇到坑基本上都是因为，这篇论文是另篇论文的改进，然后这篇论文直接接着另篇说，所以不看另篇就看不懂。eg. NICE-SLAM的occupancy value我一直不知道是啥意思，占用不是只有0 or 1吗，结果看了它的上一篇iMAP，里面直接说了体密度转为occupancy value然后计算光线在该体素停止的概率</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/paper/" style="color: #03a9f4">paper</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/nerf/" style="color: #00bcd4">nerf</a>
+        </span>
+        
+    </div>
+    <a href="/NeRF%E4%B8%93%E9%A2%98/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/orb%E7%89%B9%E5%BE%81/">
+        <h2 class="post-title">手写ORB特征检测</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/slam/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                slam
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="ORB特征检测"><a href="#ORB特征检测" class="headerlink" title="ORB特征检测"></a>ORB特征检测</h1><p>ORB特征检测分：提取关键点、计算描述子、暴力匹配</p>
+<p>提取关键点一般会先建立图像金字塔，然后对每一层单独地提取关键点。判断是否为关键点的依据是：选当前点周围的16个点（<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240212234944093.png">16个点的图</a>），看是否有连续的N个点的像素值都大于当前点的像素值$I_p$一定量$T$或者小于，即$(i_1\gt I_p+T\bigcap i_2\gt I_p+T \bigcap … )\bigcup (i_1\lt I_p-T\bigcap i_2\lt I_p-T \bigcap … )$。对于关键点再计算一下方向，方向是在关键点周围计算质心然后计算当前点与质心的连线的角度</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/slam/" style="color: #00a596">slam</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/orb/" style="color: #03a9f4">orb</a>
+        </span>
+        
+    </div>
+    <a href="/orb%E7%89%B9%E5%BE%81/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/batchnorm%E5%92%8Clayernorm/">
+        <h2 class="post-title">batchnorm和layernorm</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/deeplearning/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                deeplearning
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>参考：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BABPWOkSbLE&feature=youtu.be">李宏毅batchnorm</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647813604">batchnorm解释和layernorm</a></p>
+<p>在优化的过程中，有时候error surface不平稳会使得模型很难收敛，例如峡谷形状，假设有2个特征，1个特征的取值都是100,200…，1个特征的取值是0.1,0.2…，固定学习率会在峡谷中间摆荡，如下的左图，右图是优化器用动量方法解决这个问题，batchnorm也可以解决</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/deeplearning/" style="color: #ffa2c4">deeplearning</a>
+        </span>
+        
+    </div>
+    <a href="/batchnorm%E5%92%8Clayernorm/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/einsum/">
+        <h2 class="post-title">einsum爱因斯坦求和</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/pytorch/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                pytorch
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/20
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/361209187">参考博客</a></p>
+<p>MoCo代码实现里有einsum，einsum叫爱因斯坦求和，可以用于向量内积，向量外积，矩阵乘法，转置和张量收缩等各种操作</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/pytorch/" style="color: #00a596">pytorch</a>
+        </span>
+        
+    </div>
+    <a href="/einsum/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E3%80%81%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC/">
+        <h2 class="post-title">矩阵求导、向量求导</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/math/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                math
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/28
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="1-基本情况"><a href="#1-基本情况" class="headerlink" title="1. 基本情况"></a>1. 基本情况</h1><p>机器学习中每次学一个模型都会遇到对向量or矩阵求导的情况，然后就每次都卡壳，所以不如先把这个学了</p>
+<p>回忆学习标量求导，会分用定义求（$f’(x)&#x3D;\lim_{\Delta x\rightarrow 0}{\frac{f(x+\Delta x)-f(x)}{\Delta x}}$）和用法则求（例如$e^x&#x3D;e^x,\frac{f(x)}{g(x)}&#x3D;\frac{f’(x)g(x)-g’(x)f(x)}{g^2(x)}$等等）</p>
+<p>所以对矩阵求导（向量可以视作特殊的矩阵）也会有2种方法，分别是定义求和用法则求</p>
+<p>因为机器学习一般遇到的函数是结果是标量，但自变量是矩阵，这种函数称为矩阵变元的标量函数，例如线性回归$loss(\pmb{\omega},b)&#x3D;\pmb{\omega}^T\pmb{x}+b$，所以本文只记录这种情况，而不讨论矩阵函数对矩阵求导的情况</p>
+<p>符号方面，实数用普通的表示$eg.a$，向量用加粗的表示$eg. \pmb{a}$（向量全是列向量，没行向量），矩阵用大写字母表示$eg. A$</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/math/" style="color: #00bcd4">math</a>
+        </span>
+        
+    </div>
+    <a href="/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E3%80%81%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
+        <h2 class="post-title">github+hexo搭建主题+日常使用方法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/tutorial/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                tutorial
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="搭建方法："><a href="#搭建方法：" class="headerlink" title="搭建方法："></a>搭建方法：</h1><p><a target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github page</a></p>
+<p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
+<p>换主题操作如这个，下好改个名就行</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/hexo/" style="color: #00a596">hexo</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/github/" style="color: #ff7d73">github</a>
+        </span>
+        
+    </div>
+    <a href="/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95almost_finished/">
+        <h2 class="post-title">相机模型和多视几何</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/CV/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CV
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="相机模型（针孔相机模型）"><a href="#相机模型（针孔相机模型）" class="headerlink" title="相机模型（针孔相机模型）"></a>相机模型（针孔相机模型）</h1><h2 id="针孔相机模型的介绍"><a href="#针孔相机模型的介绍" class="headerlink" title="针孔相机模型的介绍"></a>针孔相机模型的介绍</h2><p>相机模型如图，有相机中心（针孔）、图像平面（这个是等价的图像平面）、焦距f、物理世界的真实的一点P</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121123981.webp"></p>
+<p>相机模型的作用就是我们对于物理世界拍照的时候，物理世界的每个点会落在我们拍出来的照片的哪个像素上。</p>
+<p>一共有4个坐标系：世界坐标系（随便定义的一个坐标系，可以描述物理世界的任意一个点的坐标，是最大的坐标系）、相机坐标系（如图以相机中心C为原点的坐标系）、图像坐标系（如图以图像中某一点O为原点的坐标系）和像素坐标系（以图像平面的左上角为原点，且每个点都是整数坐标因为是像素的坐标系）</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SLAM/" style="color: #00a596">SLAM</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/CV/" style="color: #03a9f4">CV</a>
+        </span>
+        
+    </div>
+    <a href="/%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%A4%9A%E8%A7%86%E5%87%A0%E4%BD%95almost_finished/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+    </div>
+    <div class="page-index">
+        
+        <span class="current">1</span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="/images/gura_avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">MXD</div>
+        <div class="description">
+            <p>Here is MXD who needs one corgi!</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/maoxindong123">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 MXD の 大house
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;MXD
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+    </body>
+</html>

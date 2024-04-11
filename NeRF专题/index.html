@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>NeRF and so on | MXD の 大house</title>
+        <meta name="author" content="MXD" />
+        <meta name="description" content="MXD need one corgi!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/gura_avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 7.1.1"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>MXD の 大HOUSE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MXD の 大HOUSE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>NeRF and so on</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/9
+        </span>
+        
+        <span class="category">
+            <a href="/categories/paper/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                paper
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/paper/" style="color: #00a596">paper</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/nerf/" style="color: #03a9f4">nerf</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><strong>按时间顺序，把NeRF相关论文今天结束了（先把我这Point-SLAM, Loopy-SLAM这条线结束，然后搜NeRF的后续工作中有代表性的（速度最快的和渲染质量最好的Mip-NeRF），把有代表性的看一看，就算结束NeRF了，然后是gaussian splatting</strong></p>
+<p>感觉遇到坑基本上都是因为，这篇论文是另篇论文的改进，然后这篇论文直接接着另篇说，所以不看另篇就看不懂。eg. NICE-SLAM的occupancy value我一直不知道是啥意思，占用不是只有0 or 1吗，结果看了它的上一篇iMAP，里面直接说了体密度转为occupancy value然后计算光线在该体素停止的概率</p>
+<span id="more"></span>
+
+<p>现在的顺序是：$Loopy-SLAM\rightarrow Point-SLAM\rightarrow NICE-SLAM$</p>
+<h1 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360365941">NeRF原理解读</a>	<a target="_blank" rel="noopener" href="https://liwen.site/archives/2302">NeRF具体的公式推导和代码，包括输入维度等</a>	<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/512538748">NeRF综述</a>	<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/595117334">体渲染volume redereing介绍</a></p>
+<h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p><strong>体渲染介绍</strong></p>
+<p>体渲染是求光照强度$I$ or 颜色$C$的，它的思想就是照片上的物体颜色是靠物体上的光线照过来的，光线沿着光路会有粒子（灰尘之类的）阻挡（不只是阻挡，它分了4种情况，有减弱光线强度的、有增强光线强度的），然后它把光线走过$dS$长度的光路的变化量建个模，得到从光源处的有着$I(0)$强度的光照到目标处还剩多大强度$I(s)$</p>
+<p>建模也很简单，假设一个粒子的分布比例并且假设均匀分布则有个阻挡率 or 放大率，然后就得到了走过$dS$​​会有多大的变化量，然后积个分就好了</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>问题情景是给定一个三维场景的某些位姿拍摄的二维图片，然后需要能预测 or 渲染出新的位姿（虚拟视角）拍摄的二维图片</p>
+<p>在NeRF之前，渲染3d物体的新视角一般分为显式 or 隐式地存储物体信息。显式地方法包括三角网格triangle meshes、体素voxel grids等，可以生成照片级地虚拟视角，但占用内存太大无法提高分辨率；隐式是用一个函数来记录3d物体，比如用一个MLP，输入一个位置坐标可以输出一个集合关系。它可以提高分辨率，但无法生成照片级的虚拟视角。而NeRF就是用的隐式的方法，在虚拟视角的合成效果上前进了一大步</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202404061616029.png" alt="image-20240406161607976"></p>
+<p>NeRF认为二维图片的每个像素都是从相机的光心沿这个像素射出去的一条射线经过空气的各种粒子的衰减后射在物体表面得到颜色（实际是物体发出光线射到光心上，但可以反过来），如图a，2个眼睛表示光心，穿过1个像素射在挖掘机上</p>
+<p>整个空间被分为体素voxel grids，每个体素有体素密度$\sigma(\pmb{x})$​，表示光线通过该体素会衰减多少。还是如图a，每条射线上取样若干点，每个点代表1个体素，后续用于体渲染</p>
+<p>然后NeRF会训练一个MLP记作$\pmb{F_{\pmb{\theta}}}$，输入是整个空间内任意一个体素的位置$\pmb{x}\in\R^3$、看这个体素的视角$\pmb{d}&#x3D;(\theta, \phi)\in\R^2$，输出是沿着该视角看这个体素得到的颜色$\pmb{c}&#x3D;(r,g,b)$、该体素的体素密度$\sigma$。其中，体素密度只与体素的位置有关而与视角无关，所以MLP的前向过程是：先输入$\pmb{x}$输出$\sigma$和中间特征，中间特征和$\pmb{d}$再输入得到$\pmb{c}$。如图a和b，输入position+direction，输出color+density​</p>
+<p>现在得到了$\pmb{F_{\pmb{\theta}}}$可以得到任意一个体素的体素密度和颜色，要渲染出新的视角的二维图片，则从光心沿着每个像素发出一条射线，然后沿途经过的所有体素进行积分得到最后的颜色（公式1$C(\pmb{r})&#x3D;\int_{t_n}^{t_f}T(t)\sigma(\pmb{r}(t))\pmb{c}(\pmb{r}(t),\pmb{d})dt$）实际用的是近似方法，常见近似方法是沿射线均匀地取点，论文里说不如均匀地分段然后在每个段里随机取点（公式3$t_i\sim u[t_n+\frac{t-1}{N}(t_f-t_n),t_n+\frac{t}{N}(t_f-t_n)]$​），最终得到了渲染的公式（公式4）。该公式处处可微。如图c、d，进行了体渲染</p>
+<p>实际实现的时候论文加了个位置编码positional encoding。因为直接把MLP作用于$\pmb{p}&#x3D;(x,y,z)$，MLP就倾向于得到低分辨率。有论文也提到了这一点，并提出将三维坐标先映射到高维，再输入MLP，就可以得到更高分辨率，所以论文用公式6$\gamma(\pmb{p})&#x3D;(sin(2^0\pi\pmb{p}), cos(2^0\pi\pmb{p}), sin(2^1\pi\pmb{p}), cos(2^1\pi\pmb{p}),…,sin(2^{L-1}\pi\pmb{p}), cos(2^{L-1}\pi\pmb{p}))$进行位置编码，也就是将$\pmb{p}&#x3D;(x,y,z)$的每一维都变成2L维，从3维变成了6L维。除了位置，方向$\pmb{d}&#x3D;(\gamma,\phi)$​也被位置编码映射到了高维</p>
+<p>实际训练的时候，需要先有一系列RGB图片和对应的相机位姿，然后每个batch是从所有图片里sample出一些像素（一一对应得到射线，论文里一个batch是4096根射线），然后将每个射线均匀分段然后随机采样一些点（论文里是1根射线采样192个点），然后问MLP每个点的颜色，然后用体渲染的方法求出预估的颜色$\hat{C(\pmb{r})}$，与真实的颜色$C(\pmb{r})$求MSE令最小<br>$$<br>L&#x3D;\sum_{\pmb{r}\in R}\parallel \hat{C(\pmb{r})-C(\pmb{r})}\parallel_2^2<br>$$</p>
+<h2 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h2><p>相关工作里的三角网格triangle meshes：（参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/404811738">site 1</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/410306876">site 2</a>）</p>
+<p>论文在介绍曾经的三维物体的存储方法时提到triangle meshes，这是fusion 360等建模软件的存储方法，与体素voxel grids类似</p>
+<p>在二维平面，任意多边形可以分解为三角形，而三角形又可以以体素（等于是栅格地图）的方法记录，不完全搞个栅格地图是为了减小内存</p>
+<p>扩展到三维情况，triangle meshes的方法只存储3d物体的表面，然后比如想得到从XOY的平面看这个3d物体什么样，就用Z方向的射线，从每个像素开始看，看每个射线穿过几个三角形之类的</p>
+<p>相关工作里的level sets（[前面介绍得好，后面烂尾了](as level sets)）：</p>
+<p>水平集是一种使得曲线演变的方法，曲线演变的意思是，比如有一种图像分割的方法，它是一开始有个任意的曲线，然后有一个曲线演变的方法去迭代，每次迭代使得曲线的每个点朝着正确的分割方向走一步，最终实现图像分割。XOY平面的二维曲线可以看作是三维空间中的一个曲面（可以用二位函数$f(x,y)$表示）与XOY这个“曲面”的交线，所以可以通过不断地优化曲面，只要它与XOY的交线。与XOY的交线即是$f(x,y)&#x3D;0$，这个&#x3D;0就叫水平集，也就是用一个水平面去交，得到的点的集合（论文里的level set不知道干啥的）</p>
+<h1 id="NICE-SLAM"><a href="#NICE-SLAM" class="headerlink" title="NICE-SLAM"></a>NICE-SLAM</h1><p>这个好像是，它先存voxel grids，所以是显式的，然后用神经网络去提取特征，所以是隐式的，不直接用显式的特征是为了加入猜的成分</p>
+<p>那它咋得到large scale的性质？</p>
+<p>前面说半天都是representation，差不多是把NeRF单纯用1个MLP变成了用4个voxel grids，它费了老大劲算的occupancy相当于NeRF的体素密度</p>
+<p>但它怎么搞出来实时性和scalability的</p>
+<p>所以每个体素的参数都必须对每个物体都训练一遍，换个物体就不行了</p>
+<p>这不是栅格地图，而是特征栅格feature grid，所以不存在怎么得到的数字，全是参数，一开始随机初始化，然后训练减小loss即可。<del>所以这个feature grid的大小应该是一开始设置好的，和3维重建的物体大小完全没关系</del>有关系的，每16cm、32cm、2m是1个grid，那我不知道它怎么scale up，难道一般的voxel grid远比16cm小？</p>
+<p>NICE-SLAM提出的是一个替换掉NeRF中的MLP那部分的东西，也就是NeRF是先学一个MLP、再用体渲染，而NICE-SLAM是先学一个representation、再用体渲染</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202404061637605.png" alt="image-20240406163751465"></p>
+<p>NICE-SLAM的representation就是上图的层次化特征栅格hierarchical feature grid，对于一个场景来说，它会每16cm、32cm、2m用1个grid表达</p>
+<p>看半天原文不如先看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/507887844">中文解读</a>	<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/582821039">NICE-SLAM代码解析</a></p>
+<p>它比IMAP能处理更大的场景，不是说IMAP的模型太大，而是太小，所以存不下来更多的信息</p>
+<p>前身iMAP</p>
+<p>geometric loss是看深度图和方差（让几何形状出来），photometric loss是看RGB图像的灰度值</p>
+<h1 id="iMAP"><a href="#iMAP" class="headerlink" title="iMAP"></a>iMAP</h1><p><strong>(没开源)</strong></p>
+<p>iMAP是针对NeRF只能离线地建图的改进，现在它可以在线、实时地建图了（文中说在经过$10\sim 20$个keyframe的更新后就可以对整个房间建图）</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202404081457520.png" alt="image-20240408145751468"></p>
+<p>iMAP维护1个MLP（即上图的$\pmb{F}<em>{\pmb{\theta}}$）作为3D坐标$\pmb{p}&#x3D;(x,y,z)$到颜色$\pmb{c}&#x3D;(r,g,b)$和体积密度$\rho$的映射$\pmb{F}</em>{\pmb{\theta}}(\pmb{p})&#x3D;(\pmb{c},\rho)$</p>
+<p>RGB-D图像不断传入tracking进程。新的1 frame传入tracking进程后，tracking进程使用$\pmb{F}_{\pmb{\theta}}$求出该frame的位姿$\pmb{T}$，然后传入mapping进程</p>
+<p>mapping进程不断接收frame和对应$\pmb{T}$，以某种标准判断是否是keyframe，然后采用某种标准选取keyframe set，对$\pmb{F}_{\pmb{\theta}}$进行优化</p>
+<p>iMAP对深度和颜色的渲染与NeRF类似。$\pmb{F}<em>{\pmb{\theta}}$输出了空间中任意一点的颜色$\pmb{c}$和深度$d$，给出一个位姿$\pmb{T}$和一个像素坐标$[u,v]$，就可以发出一条射线$\pmb{r}&#x3D;TK^{-1}[u,v]$，在该射线上与NeRF一样地均匀分段然后随机采样，得到$N$个点$\pmb{p_i}&#x3D;d_i\pmb{r}$就可以得到每个点的颜色和体积密度$(\pmb{c}<em>i,\rho_i)&#x3D;\pmb{F}</em>{\pmb{\theta}}(\pmb{p}<em>i)$。随后与NeRF有点区别，iMAP将体积密度转为占用概率（即该点有多大概率遮挡住这条射线）$1-e^{-\rho_i(d</em>{i+1}-d_i)}$（意思就是，第$i$个点负责遮挡的是第$i$个点和第$i+1$个点之间这段距离，$1-e^{xxx}$这个原文说是一个激活函数），所以射线终止在第$i$个点和第$i+1$个点之间的概率是$w_i&#x3D;o_i\prod</em>{j&#x3D;1}^{i-1}(1-o_j)$（必须在前$i-1$段不终止，并在第$i$段终止）。最后算出渲染的深度和颜色（就是用期望算了一下，比如深度，一条射线在第1段有$w_1$部分的深度为$d_1$，在第2段有$w_2$部分的深度为$d_2$，…，则一共是$\sum_{i&#x3D;1}^Nw_id_i$）<br>$$<br>\begin{align}<br>&amp;\hat{D}[u,v]&#x3D;\sum_{i&#x3D;1}^Nw_id_i\<br>&amp;\hat{I}[u,v]&#x3D;\sum_{i&#x3D;1}^Nw_i\pmb{c}<em>i<br>\end{align}<br>$$<br>对于一条射线（也就是一个像素），也能计算出深度的方差，如下（回忆方差公式$Var(x)&#x3D;\frac{1}{n}[(x_1-\overline{x})^2+…]$，下式因为第$i$段到第$i+1$段只占$w_i$的概率，所以乘$w_i$）<br>$$<br>\hat{D}</em>{var}[u,v]&#x3D;\sum_{i&#x3D;1}^Nw_i(\hat{D}[u,v]-d_i)^2<br>$$</p>
+<p>损失函数包含颜色损失(photimetric loss)和几何损失(geometric loss)，如下$L_p&#x3D;\frac{1}{M}\sum_{i&#x3D;1}^W\sum_{(u,v)\in s_i}|I_i[u,v]-\hat{I}<em>i[u,v] |$<br>$$<br>\begin{align}<br>&amp;L_p&#x3D;\frac{1}{M}\sum</em>{i&#x3D;1}^W\sum_{(u,v)\in s_i}|I_i[u,v]-\hat{I}<em>i[u,v] |\<br>&amp;L_g&#x3D;\frac{1}{M}\sum</em>{i&#x3D;1}^W\sum_{(u,v)\in s_i}\frac{|D_i[u,v]-\hat{D}<em>i[u,v] |}{\sqrt{\hat{D}</em>{var}[u,v]}}\<br>&amp;L&#x3D;min(L_g+\lambda_pL_p)<br>\end{align}<br>$$<br>在实现上还有一些细节：</p>
+<ol>
+<li><p>keyframe的选择：</p>
+<p> iMAP是用当前frame和从维护的一个keyframe set（类似名人堂）中选一部分keyframe更新MLP，所以需要判断当前frame能不能进keyframe set。判断标准就是，MLP会在上一个keyframe后lock住，然后不断渲染新来的frame，如果新来的frame渲染出来的误差足够大，则认为模型太旧了，需要更新模型了，当前frame就被认为是keyframe。判断公式如下<br> $$<br> P&#x3D;\frac{1}{|s|}\sum_{u,v\in s}\Bbb{1}(\frac{|D[u,v|-\hat{D}[u,v]}{D[u,v]}\lt t_D)<br> $$<br> 就是在当前frame采样s个像素，对每个像素渲染一下，看渲染误差超过$t_D$的像素占比P有多大。额外除$D[u,v]$是可以做到，距离更近就更容易有大的P，所以距离物体越近，keyframe的出现就越频繁</p>
+</li>
+<li><p>采样：</p>
+<p> 怎么选keyframe：从keyframe set中选择MLP更新所使用的keyframe前，需要现在的MLP对所有keyframe进行一次渲染然后计算出loss，按照loss占比从keyframe set中抽3个keyframe（渲染误差越大就越有可能被抽出来给MLP更新），再加上最新1个frame（不管是不是keyframe）、最新1个keyframe，一共5个frame&#x2F;keyframe传入MLP中。计算loss占比公式没给，说是同下。</p>
+<p> 每张图片怎么选采样点：它会分2步。一共采样s个点，第一步把一张图片切分为$8\times 8&#x3D;64$个子区域，然后在每个子区域平均采样$s&#x2F;64$个点，然后计算每个区域的渲染误差$L[j]&#x3D;\frac{1}{r_j}\sum_{(u,v)\in r_j}|I_i[u,v]-\hat{I}<em>i[u,v] |+\frac{|D_i[u,v]-\hat{D}<em>i[u,v] |}{\sqrt{\hat{D}</em>{var}[u,v]}}$（和前面的loss函数一样，$r_j$就是在第$j$个子区域的采样点集），然后归一化$f[j]&#x3D;\frac{L[j]}{\sum</em>{m&#x3D;1}^{64}L[m]}$得到每个子区域的loss占比。第二步按照loss占比在每个子区域重新采样$r_j&#x3D;s*f[j]$​，就用这些采样点去更新MLP</p>
+</li>
+</ol>
+<h1 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h1><p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/Replica-Dataset">Replica</a></p>
+<p><a target="_blank" rel="noopener" href="https://cvg.cit.tum.de/data/datasets/rgbd-dataset">TUM RGB-D</a></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 MXD の 大house
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;MXD
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="maoxindong123/giscus"
+    data-repo-id="R_kgDOJwh3jA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJwh3jM4CXRuC"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

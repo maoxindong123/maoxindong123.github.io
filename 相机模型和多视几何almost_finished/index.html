@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>相机模型和多视几何 | MXD の 大house</title>
+        <meta name="author" content="MXD" />
+        <meta name="description" content="MXD need one corgi!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/gura_avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 7.1.1"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>MXD の 大HOUSE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MXD の 大HOUSE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>相机模型和多视几何</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/10
+        </span>
+        
+        <span class="category">
+            <a href="/categories/CV/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                CV
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/SLAM/" style="color: #03a9f4">SLAM</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/CV/" style="color: #03a9f4">CV</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="相机模型（针孔相机模型）"><a href="#相机模型（针孔相机模型）" class="headerlink" title="相机模型（针孔相机模型）"></a>相机模型（针孔相机模型）</h1><h2 id="针孔相机模型的介绍"><a href="#针孔相机模型的介绍" class="headerlink" title="针孔相机模型的介绍"></a>针孔相机模型的介绍</h2><p>相机模型如图，有相机中心（针孔）、图像平面（这个是等价的图像平面）、焦距f、物理世界的真实的一点P</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121123981.webp"></p>
+<p>相机模型的作用就是我们对于物理世界拍照的时候，物理世界的每个点会落在我们拍出来的照片的哪个像素上。</p>
+<p>一共有4个坐标系：世界坐标系（随便定义的一个坐标系，可以描述物理世界的任意一个点的坐标，是最大的坐标系）、相机坐标系（如图以相机中心C为原点的坐标系）、图像坐标系（如图以图像中某一点O为原点的坐标系）和像素坐标系（以图像平面的左上角为原点，且每个点都是整数坐标因为是像素的坐标系）</p>
+<span id="more"></span>
+
+<p>针孔相机模型就是推导4个坐标系之间的坐标转换。</p>
+<h2 id="使用针孔相机模型的流程是："><a href="#使用针孔相机模型的流程是：" class="headerlink" title="使用针孔相机模型的流程是："></a>使用针孔相机模型的流程是：</h2><p>一开始要先对物理世界随便建个坐标系也就是世界坐标系，这样物理世界每个点都有坐标</p>
+<p>然后对任一点，求出它在相机坐标系里的坐标。相机坐标系会相对世界坐标系旋转和平移，因为我们拍照的时候，相机会相对物理世界运动</p>
+<p>然后根据相机坐标系的坐标，求出图像坐标系的坐标</p>
+<p>然后根据图像坐标系的坐标，求出像素坐标系的坐标</p>
+<h2 id="世界坐标系-rightarrow-相机坐标系"><a href="#世界坐标系-rightarrow-相机坐标系" class="headerlink" title="世界坐标系$\rightarrow$相机坐标系"></a>世界坐标系$\rightarrow$相机坐标系</h2><p>无论相机怎么移动、旋转，相机坐标系相对于世界坐标系只是做了一次刚体变换</p>
+<p>一次欧式变化可以拆成一次旋转和一次平移，而经过推导，最终可以把一次刚体变换变成一次矩阵乘法</p>
+<p>假设我们知道一个坐标系的基$(\vec{e_1},\vec{e_2},\vec{e_3})$、另一个坐标系的基$(\vec{e_1’},\vec{e_2’},\vec{e_3’})$，这2个坐标系只有旋转而没有平移也就是原点是一个点，那么对于一个向量，它的坐标满足如下等式：<br>$$<br>\begin{bmatrix}\vec{e_1},\vec{e_2},\vec{e_3}\end{bmatrix}\begin{bmatrix}a_1 \ a_2 \ a_3\end{bmatrix}&#x3D;\begin{bmatrix}\vec{e_1’},\vec{e_2’},\vec{e_3’}\end{bmatrix}\begin{bmatrix}a_1’ \ a_2’ \ a_3’\end{bmatrix}<br>$$<br>同时左乘$\begin{bmatrix}\vec{e_1^T}\ \vec{e_2^T} \ \vec{e_3^T}\end{bmatrix}$，因为e都是单位正交向量，所以左边变成了单位矩阵，结果是：<br>$$<br>\vec{a}&#x3D;\begin{bmatrix}a_1 \ a_2 \ a_3\end{bmatrix}&#x3D;\begin{bmatrix}\vec{e_1^T}\vec{e_1’} &amp; \vec{e_1^T}\vec{e_2’} &amp; \vec{e_1^T}\vec{e_3’} \ \vec{e_2^T}\vec{e_1’} &amp; \vec{e_2^T}\vec{e_2’} &amp; \vec{e_3^T}\vec{e_3’} \ \vec{e_3^T}\vec{e_1’} &amp; \vec{e_3^T}\vec{e_2’} &amp; \vec{e_3^T}\vec{e_3’}  \end{bmatrix}\begin{bmatrix}a_1’ \ a_2’ \ a_3’\end{bmatrix}\overset{def}{&#x3D;}R\vec{a’}<br>$$<br>R就是我们要的旋转矩阵。</p>
+<p>如果只有旋转，没有平移，那么我们用世界坐标系的基和相机坐标系的基一算，就有了R，对于世界坐标系里的任意一点的坐标$a’&#x3D;\begin{pmatrix}a_1’ \ a_2’ \ a_3’\end{pmatrix}$，我们用R和它一乘，就有了相机坐标系的坐标$a&#x3D;\begin{pmatrix}a_1 \ a_2 \ a_3\end{pmatrix}$</p>
+<p>加上平移很简单，对于世界$\rightarrow$相机这一变换，有2种写法</p>
+<p>第1种是学习针孔相机模型时常见的写法，如下<br>$$<br>\begin{bmatrix}\vec{a’} \ 1 \end{bmatrix}&#x3D;\begin{bmatrix}R &amp; t \ 0^T &amp; 1\end{bmatrix}\begin{bmatrix}\vec{a} \ 1\end{bmatrix}\overset{def}{&#x3D;}T\begin{bmatrix}\vec{a} \ 1\end{bmatrix}<br>$$<br>第2种是后面学习PnP中的DLT时的写法，如下<br>$$<br>\vec{a’}&#x3D;\begin{bmatrix}R|t\end{bmatrix}_{3\times 4}\begin{bmatrix}\vec{a}\1\end{bmatrix}<br>$$<br>其实是一样的，下面的相机$\rightarrow$图像这一变换就是普通坐标而不是齐次坐标了，所以我认为第1种写法只是为了搞出外参矩阵，第2种写法是方便把整个变换写成1个式子</p>
+<p>所以回到世界坐标系$\rightarrow$相机坐标系，我们需要有世界坐标系的基、相机坐标系的基，这样可以求出旋转矩阵R，还需要世界坐标系的原点位置、相机坐标系的原点位置，这样可以求出平移向量t。这样T就可以求出。然后对于世界坐标系的任意一点，给出坐标就能求出在当前相机的位置和位姿下，它在相机坐标系的坐标，如下式<br>$$<br>P_{camera}&#x3D;TP_{world}<br>$$</p>
+<h2 id="相机坐标系-rightarrow-图像坐标系"><a href="#相机坐标系-rightarrow-图像坐标系" class="headerlink" title="相机坐标系$\rightarrow$图像坐标系"></a>相机坐标系$\rightarrow$图像坐标系</h2><p>回到针孔相机模型图</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306121239088.png"></p>
+<p>图中蓝色三角形和橙色三角形相似，所以有下式（注意相机坐标系是三维的，而图像坐标系是二维的，就那一个面）<br>$$<br>\begin{align}&amp; \frac{Z}{f}&#x3D;\frac{X}{x}&#x3D;\frac{Y}{y} \<br>\overset{}{\Rightarrow} &amp;x&#x3D;f\frac{X}{Z},y&#x3D;f\frac{Y}{Z}\end{align}<br>$$<br>所以得到了图像坐标系下的坐标$(x,y)$</p>
+<h2 id="图像坐标系-rightarrow-像素坐标系"><a href="#图像坐标系-rightarrow-像素坐标系" class="headerlink" title="图像坐标系$\rightarrow$像素坐标系"></a>图像坐标系$\rightarrow$像素坐标系</h2><p>图像坐标系的原点一般是不一定在哪，比如图中是在照片的中间，而像素坐标系的原点一般规定在左上角</p>
+<p>图像坐标系的点的坐标是连续的，而像素坐标系是离散的</p>
+<p>因此还需要把图像坐标系的坐标转到像素坐标系里</p>
+<p>因为不同相机的像素点大小不同，所以同样是图像坐标系里的$(1,0)$，可能对于一个相机来说这个点会落在像素坐标系的$(1,0)$，而另一个相机的像素比较密，会落在$(10,0)$，也就是前面的单位都是米（或者厘米等长度单位），而到像素坐标系单位变成像素，所以会有一个缩放。再加上前面说的原点位置不同，有一个平移。因此是一个缩放+一个平移。</p>
+<p>假设图像坐标系里的下标是$(x,y)$，像素坐标系里的下标是$(u,v)$，则满足下面关系，其中$\alpha,\beta$是缩放比例，$c_x,c_y$是平移。再结合相机坐标系$\rightarrow$图像坐标系，可以整理出结果<br>$$<br>\begin{aligned}<br>&amp;\left{<br>\begin{aligned}<br>u &amp; &#x3D;\alpha x+c_x \<br>v &amp; &#x3D;\beta y+c_y<br>\end{aligned}<br>\right. \<br>\overset{}{\Rightarrow}<br>&amp;\left{<br>\begin{aligned}<br>u &amp; &#x3D;f_x\frac{X}{Z}+c_x,其中f_x&#x3D;f<em>\alpha \<br>v &amp; &#x3D;f_y\frac{Y}{Z}+c_y,其中f_y&#x3D;f</em>\beta<br>\end{aligned}<br>\right.\<br>\overset{}{\Rightarrow}<br>&amp; \begin{bmatrix}<br>u \ v \ 1<br>\end{bmatrix}<br>&#x3D;\frac{1}{Z}<br>\begin{bmatrix}<br>f_x &amp; 0 &amp; c_x \<br>0 &amp; f_y &amp; c_y \<br>0 &amp; 0 &amp; 1<br>\end{bmatrix}<br>\begin{bmatrix}<br>X \ Y \ Z<br>\end{bmatrix}<br>\overset{def}{&#x3D;}<br>\frac{1}{Z}KP<br>\end{aligned}<br>$$<br>上式结果是，P是相机坐标系下的坐标，K被称为相机的内参数矩阵，Z是相机坐标系下的坐标Z，可以得到像素坐标系下的下标$(u,v)$</p>
+<p>再结合第一步世界坐标系$\rightarrow$相机坐标系，可以得到<strong>最后最后的结果</strong>：<br>$$<br>\begin{align}<br>P_{Camera}&amp;&#x3D;TP_{World}（齐次坐标） \<br>ZP_{Pixel}&amp;&#x3D;KP_{Camera}（普通坐标）<br>\end{align}<br>$$</p>
+<p>其中T就被称为相机的外参，随相机的旋转和平移而变换。K是内参。</p>
+<p>如果合并为1个式子，从世界坐标系$\begin{bmatrix}x\y\z\end{bmatrix}$映射到像素坐标系$\begin{bmatrix}u\v\end{bmatrix}$，形式为<br>$$<br>\lambda \begin{bmatrix}u\v\1\end{bmatrix}&#x3D;\begin{bmatrix}f_x&amp;&amp;c_x\&amp;f_y&amp;c_y\&amp;&amp;1\end{bmatrix}\begin{bmatrix}R|t\end{bmatrix}\begin{bmatrix}x\y\z\1\end{bmatrix}<br>$$</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>针孔相机模型的流程是：</p>
+<p>给出世界坐标系的基、相机坐标系的基，求出R，然后给出世界坐标系的原点、相机坐标系的原点，求出t。用R和t拼出T。</p>
+<p>给出焦距f，给出缩放比例$\alpha,\beta$，求出$f_x,f_y$，然后给出$c_x,c_y$，拼出K</p>
+<p>然后就可以对于任一点的世界坐标求出它落在哪个像素上</p>
+<p>其中求出相机坐标系后，后续做的所有变换包括：（<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38133509/article/details/85689838">归一化平面</a>）</p>
+<ol>
+<li>把相机坐标系下的$P_{camera}&#x3D;[X,Y,Z]^T$中的$X,Y$同除$Z$得到<strong>归一化平面</strong></li>
+<li>$X,Y$同乘焦距$f$得到图像坐标</li>
+<li>缩放+平移得到像素坐标</li>
+</ol>
+<p>所以在对极几何中会遇到：</p>
+<ol>
+<li>先有$ZP_{pixel}&#x3D;KP_{camera}$，并且$Z$是未知数，则$KP_{camera}$是$P_{pixel}$的未知数倍，就表示那条射线</li>
+<li>再同乘$K^{-1}$，$K$包含的就是焦距f、米到像素的缩放倍数$\alpha,\beta$、平移t，所以等于是把像素坐标还原到<strong>归一化平面</strong>（从相机坐标到像素坐标，分成除$Z$到归一化平面和乘$K$到像素坐标，现在乘$K^{-1}$就是回到归一化平面）</li>
+</ol>
+<h2 id="24-03-03总结"><a href="#24-03-03总结" class="headerlink" title="24&#x2F;03&#x2F;03总结"></a>24&#x2F;03&#x2F;03总结</h2><p>全程是在齐次坐标下运算的，$P_{world},P_{camera}$都是4维向量（$P_{camera}$就是世界坐标系转个位置），$P_{image},P_{pixel}$都是3维向量（都在平面上），归一化平面就是$Z&#x3D;1$​的时候算的那个坐标</p>
+<p>下面右式每乘一个矩阵就变一步，看的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94244568">这个</a>。$dX,dY$表示一个像素的物理宽度和高度，$f_x,f_y$是$\begin{aligned}f_x&amp;&#x3D;\frac{f}{dX}\f_y&amp;&#x3D;\frac{f}{dY}\end{aligned}$<br>$$<br>Z\begin{pmatrix}u\v\1\end{pmatrix}&#x3D;\underbrace{\begin{pmatrix}\frac{1}{dX}&amp;0&amp;u_0\0&amp;\frac{1}{dY}&amp;v_0\0&amp;0&amp;1  \end{pmatrix}\begin{pmatrix}f&amp;0&amp;0&amp;0\0&amp;f&amp;0&amp;0\0&amp;0&amp;1&amp;0\end{pmatrix}}<em>{K}\underbrace{\begin{pmatrix}R&amp;t\0&amp;1\end{pmatrix}}</em>{T}\begin{pmatrix}U\V\W\1\end{pmatrix}<br>$$<br>手动理清：</p>
+<p>世界坐标系（$\begin{pmatrix}U\V\W\1\end{pmatrix}$齐次坐标，4维）乘$\begin{pmatrix}R&amp;t\0&amp;1\end{pmatrix}$得到相机坐标系（$\begin{pmatrix}X\Y\Z\1\end{pmatrix}$，齐次坐标，4维）</p>
+<p>相机坐标系（$\begin{pmatrix}X\Y\Z\1\end{pmatrix}$，齐次坐标，4维）乘$\begin{pmatrix}f&amp;0&amp;0&amp;0\0&amp;f&amp;0&amp;0\0&amp;0&amp;1&amp;0\end{pmatrix}$就是把$X,Y$缩放$f$倍得到图像坐标系（$Z\begin{pmatrix}\frac{fX}{Z}\\frac{fY}{Z}\1\end{pmatrix}$，齐次坐标，3维）。也可以理解为，$X,Y$先缩$\frac{1}{Z}$倍得到<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/585330864">归一化平面</a>坐标，再扩$f$倍到成像平面上</p>
+<p>相机坐标系（$\begin{pmatrix}X\Y\Z\1\end{pmatrix}$，齐次坐标，4维）乘$\begin{pmatrix}\frac{f}{Z}&amp;0&amp;0&amp;0\0&amp;\frac{f}{Z}&amp;0&amp;0\0&amp;0&amp;\frac{1}{Z}&amp;0\end{pmatrix}$​得到像素坐标系（非齐次坐标，2维），或者像上图改为齐次坐标下的</p>
+<p>图像坐标系（$Z\begin{pmatrix}\frac{fX}{Z}\\frac{fY}{Z}\1\end{pmatrix}$，齐次坐标，3维）缩放+平移得到像素坐标系（$Z\begin{pmatrix}u\v\1\end{pmatrix}$​​，齐次坐标，3维）</p>
+<p>注！！！！</p>
+<ol>
+<li><p>所以相机坐标系是包含了$Z$倍的，像素坐标系是不包含$Z$的，也就是$Z\begin{pmatrix}u\v\1\end{pmatrix}&#x3D;K\begin{pmatrix}X\Y\Z\1\end{pmatrix}$。从相机坐标系转归一化平面只需$X,Y$缩$\frac{1}{Z}$倍，从像素坐标系转归一化平面乘$\pmb{K}^{-1}$​​即可</p>
+</li>
+<li><p>上面全程是齐次坐标，所以$\pmb{K}\in \R_{4\times 4}$，但$\pmb{K}$第4列是全0。也可以改为非齐次坐标，把$\pmb{K}$第4列删了就行$\pmb{K}\in \R_{3\times 4}$</p>
+</li>
+<li><p>所以从世界坐标系到归一化坐标系可以用$[\pmb{R}|\pmb{t}]<em>{3\times 4}$这种外参矩阵（因为$\pmb{K}$的第4列全是0）有$s\begin{pmatrix}u\v\1\end{pmatrix}</em>{pixel}&#x3D;[\pmb{R}|\pmb{t}]\begin{pmatrix}X\Y\Z\1\end{pmatrix}_{world}$​（PnP的DLT方法用到）</p>
+</li>
+<li><p>内参矩阵的齐次坐标$\pmb{K}<em>{3\times 4}$与非齐次坐标$\pmb{K}</em>{3\times 3}$对比：上面公式是齐次坐标表示$\pmb{K}<em>{3\times 4}&#x3D;\begin{pmatrix} \frac{f}{dX}&amp;0&amp;u_0&amp;0\0&amp;\frac{f}{dY}&amp;v_0&amp;0\0&amp;0&amp;1&amp;0  \end{pmatrix}$，slam14讲书上是非齐次坐标表示$\pmb{K}</em>{3\times 4}&#x3D;\begin{pmatrix} f_x&amp;0&amp;c_x\0&amp;f_y&amp;c_y\0&amp;0&amp;1  \end{pmatrix}$，二者只是记号不同</p>
+</li>
+</ol>
+<h1 id="畸变模型"><a href="#畸变模型" class="headerlink" title="畸变模型"></a>畸变模型</h1><p>有正径向畸变、负径向畸变、切向畸变，一般径向畸变的多</p>
+<p>然后Brown提出了一个模型用于刻画这种畸变<br>$$<br>x’’&#x3D;x’\frac{1+k_1r^2+k_2r^4+k_3r^6}{1+k_4r^2+k_5r^4+k_6r^6}+2p_1x’y’+p_2(r^2+2x’^2)\<br>y’’&#x3D;x’\frac{1+k_1r^2+k_2r^4+k_3r^6}{1+k_4r^2+k_5r^4+k_6r^6}+p_1(r^2+2y’2)+2p_2x’y’<br>$$<br>里面的k,p都是常数</p>
+<p>用法是，先用针孔相机模型算出来没畸变的像素位置，然后套这个公式求出了畸变的像素位置</p>
+<h1 id="张正友标定法"><a href="#张正友标定法" class="headerlink" title="张正友标定法"></a>张正友标定法</h1><p>略</p>
+<h1 id="对极几何：2d-2d"><a href="#对极几何：2d-2d" class="headerlink" title="对极几何：2d-2d"></a>对极几何：2d-2d</h1><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>向量叉乘转换为矩阵：</p>
+<p>计算向量的叉乘$\vec{a}\times\vec{b}$，可以转化为矩阵乘法，如下式。其中$\vec{a}^\wedge$是a的反对称矩阵。<br>$$<br>\vec{a}\times\vec{b}&#x3D;\begin{Vmatrix}\vec{i} &amp; \vec{j} &amp; \vec{k} \ a_1 &amp; a_2 &amp; a_3 \ b_1 &amp; b_2 &amp; b_3\end{Vmatrix}&#x3D;\begin{bmatrix}0 &amp; -a_3 &amp; a_2 \ a_3 &amp; 0 &amp; -a_1 \ -a_2 &amp; a_1 &amp; 0\end{bmatrix}b\overset{def}{&#x3D;}\vec{a}^{\wedge}\vec{b}<br>$$<br>也就是2向量叉乘，可以变为一个的反对称矩阵和另一个向量做矩阵乘法。</p>
+<p>齐次坐标下点在直线的充要条件：</p>
+<p>考虑二维情况，一个点的齐次坐标是$p^T&#x3D;(x,y,1)$，一条直线是$ax+by+c&#x3D;0$可以记作$l:(a,b,c)$，则充要条件是二者点乘为0：<br>$$<br>p^T\cdot l&#x3D;0<br>$$</p>
+<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>终于推对了，放在齐次坐标下就对了</p>
+<p><img src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202312161722174.png" alt="image-20231216172201116"></p>
+<p>假设$P$在$O_1$的相机坐标系下的齐次坐标坐标为$P&#x3D;\begin{pmatrix}X\Y\Z\ 1\end{pmatrix}$</p>
+<p>按照本文前面的针孔相机模型，假设内参为$K_{3\times 4}$，外参为$T_{4\times 4}$（均为齐次坐标下的形状），则$p_1&#x3D;\begin{pmatrix}u_1\v_1\ 1\end{pmatrix},p_2&#x3D;\begin{pmatrix}u_2\v_2\ 1\end{pmatrix}$在各自平面$I_1I_2$的像素坐标系的齐次坐标满足<br>$$<br>\begin{aligned}<br>&amp;s_1p_1&#x3D;KP\<br>&amp;s_2p_2&#x3D;KTP<br>\end{aligned}<br>$$<br>其中$s_1s_2$是前面相机模型的Z，也就是以$O_1$为原点，作一个XYZ坐标系，XOY与$I_1$平行，$\vec{O_1P}$指向Z的正方向（而不是正轴，因为$\vec{O_1P}$可能不与$I_1$垂直），此时P点在这个坐标系里的z值就是$s_1$</p>
+<p>因为$s_1s_2$都只是个常数，所以有<br>$$<br>\begin{aligned}<br>&amp;p_1\sim KP\<br>&amp;p_2\sim KTP<br>\end{aligned}<br>$$<br>$\sim$表示左右成比例</p>
+<p>令$x_1&#x3D;K^{-1}p_1,x_2&#x3D;K^{-1}p_2$，两边同乘$K^{-1}$然后把$x_1x_2$代进去<br>$$<br>\begin{cases}<br>x_1\sim P\<br>x_2\sim TP<br>\end{cases}<br>\Rightarrow x_2\sim Tx_1<br>$$<br>两边左叉乘$t$，再左乘$x_2^T$<br>$$<br>x_2^T(t\times x_2)\sim x_2^T(t\times Tx_1)<br>$$<br>会将左边变成0，则右边也是0。齐次坐标下是0，非齐次坐标下还是0（主要是不会对叉乘变形了），转到非齐次坐标下，注意下式的$x_1,x_2$都变成了非齐次坐标，所以$T$可以展开为$R,t$了<br>$$<br>x_2^T(t\times (Rx_1+t))<br>$$<br>展开，后一项变0，只剩下前一项，此时还是非齐次坐标<br>$$<br>\begin{aligned}<br>&amp;x_2^Tt^\wedge Rx_1&#x3D;0\<br>&amp;p_2^TK^{-T}t^\wedge RK^{-1}p_1&#x3D;0<br>\end{aligned}<br>$$<br>最后<strong>结果是</strong><br>$$<br>\begin{aligned}<br>&amp;E&#x3D;t^\wedge R\<br>&amp;F&#x3D;K^{-T}EK^{-1}<br>\end{aligned}<br>$$<br>如果2帧图像之间有若干个匹配点也就是已知$p_1p_2$ or $x_1x_2$，则可以求出E or F or R,t</p>
+<p>或者已知$p_1$，问右图的极线方程，按照齐次坐标的点在直线上的要求，$p_2$所在极线的方程是$Fp_1$</p>
+<p>对极几何的缺点是尺度不确定和纯旋转</p>
+<p>$x_1x_2$实际上是归一化平面上的$\vec{O_1P},\vec{O_2P}$的投影，归一化平面是前面$s_1s_2$那里建立的XYZ坐标系中z&#x3D;1的平面，这个坐标系是针孔相机模型里最重要的坐标系了，平行于XOY的平面沿着Z轴平移，移到Z&#x3D;1时就是归一化平面，移到Z&#x3D;f时就是图像平面（tips因为$\vec{O_1P}$不一定与z轴重合所以$p_1$的z值只会$\le f$）前面的针孔相机模型有$ZP_{Pixel}&#x3D;KP_{Camera}$，推导的时候$Z$就是f，但如果Z取1就求出了这个点在归一化平面的像素坐标了（$1*p_1&#x3D;Kx_1$所以$x_1x_2$是归一化平面的像素坐标）</p>
+<p>单应矩阵没看，这个视频的UP好像也讲了</p>
+<h2 id="opencv-code"><a href="#opencv-code" class="headerlink" title="opencv code"></a>opencv code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pose_estimation_2d2d</span>(keypoints_1, keypoints_2, matches, R, t);</span><br></pre></td></tr></table></figure>
+
+<p>这么算出来的$R,t$是$x_2&#x3D;Rx_1+t$的（而不是反过来的）</p>
+<h1 id="三角测量"><a href="#三角测量" class="headerlink" title="三角测量"></a>三角测量</h1><p>现在想要$s_1s_2$了，所以有公式<br>$$<br>s_2x_2&#x3D;s_1Rx_1+t<br>$$<br>两边左乘$x_2^\wedge$，左边变成0，只剩右边<br>$$<br>s_1x_2^\wedge Rx_1+x_2^\wedge t&#x3D;0<br>$$<br>可求出$s_1$，同理可得$s_2$​</p>
+<h2 id="opencv-code-1"><a href="#opencv-code-1" class="headerlink" title="opencv code"></a>opencv code</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;Point3d&gt; points;</span><br><span class="line">triangulation(keypoints_1, keypoints_2, matches, R, t, points);</span><br></pre></td></tr></table></figure>
+
+<p>三角测量的矛盾是，位移太小 or 图像分辨率太低（可能若干点投影到一个像素上）会导致精度低，但位移大外观可能变化大 or 提高分辨率会增加计算成本</p>
+<h1 id="PnP：3d-2d"><a href="#PnP：3d-2d" class="headerlink" title="PnP：3d_2d"></a>PnP：3d_2d</h1><h2 id="DLT"><a href="#DLT" class="headerlink" title="DLT"></a>DLT</h2><p>看高翔SLAM看的</p>
+<p>已知一组3D点的世界坐标和它们在相机的相机坐标（或者说归一化平面坐标），求相机的位姿R,t。应用场景可以是相机的标定，也可以是相邻帧的位姿变化</p>
+<p>假设一个3D点的世界坐标系的齐次坐标是$P&#x3D;\begin{pmatrix}X\Y\Z\1\end{pmatrix}$，投影到归一化平面的齐次坐标是$\begin{pmatrix}u\v\1\end{pmatrix}$，则有<br>$$<br>\begin{aligned}<br>s\begin{bmatrix}u\v\1\end{bmatrix}&amp;&#x3D;[R|t]\begin{bmatrix}X\Y\Z\end{bmatrix}&#x3D;\begin{bmatrix}t_1&amp;t_2&amp;t_3&amp;t_4\t_5&amp;t_6&amp;t_7&amp;t_8\t_9&amp;t_{10}&amp;t_{11}&amp;t_{12}\end{bmatrix}\begin{bmatrix}X\Y\Z\end{bmatrix}<br>\end{aligned}<br>$$<br>变形得到<br>$$<br>\begin{aligned}<br>u&#x3D;\frac{t_1X+t_2Y+t_3Z+t_4}{t_9X+t_{10}Y+t_{11}Z+t_{12}}\<br>v&#x3D;\frac{t_5X+t_6Y+t_7Z+t_8}{t_9X+t_{10}Y+t_{11}Z+t_{12}}\<br>\end{aligned}<br>$$<br>已知是$u,v,X,Y,Z$​，其他全未知，12个未知数需要6个3D点-2D点对</p>
+<p>用归一化平面是假设已知内参K，但K未知也能做，多一些点即可</p>
+<h2 id="P3P"><a href="#P3P" class="headerlink" title="P3P"></a>P3P</h2><p>书上用三角形相似推出来方程组，然后方程组怎么解略了，那也不用看了</p>
+<p>它是有4对（世界坐标系，像素坐标系）（3对算，1对验），用三角形相似推出方程组，然后解方程组得到相机坐标系的坐标，然后用3D-3D的方法解$\pmb{R},\pmb{t}$​</p>
+<h2 id="BA"><a href="#BA" class="headerlink" title="BA"></a>BA</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>BA的思想就是，现在有$(3d,2d)$点了，那就算重投影误差即用$\pmb{T}$将3d的世界坐标全部投影回2d的像素坐标，看投影回的像素坐标与真实的像素坐标的差异，找到$\pmb{T}$使得差异最小</p>
+<p>用李代数列出某个点的针孔相机模型，$\pmb{P}<em>i$是世界坐标系的齐次坐标，$\pmb{u}<em>i$是像素坐标系的齐次坐标，$\pmb{K}\in \R</em>{3\times 4}$，$\pmb{T}\in\R</em>{4\times 4}$<br>$$<br>s_i\pmb{u}_i&#x3D;\pmb{K}\pmb{T}\pmb{P}_i<br>$$<br>重投影误差是，用$\pmb{P}_i$和猜的$exp(\pmb{\xi^\wedge})$估计$\pmb{u}_i$，与真实的$\pmb{u}<em>i$作差。最小化重投影误差<br>$$<br>\pmb{\xi}^*&#x3D;\underset{\pmb{\xi}}{argmin}\frac{1}{2}\sum</em>{i&#x3D;1}^n\parallel  \pmb{u}_i-\frac{1}{s_i}\pmb{K}T\pmb{P}_i \parallel_2^2<br>$$</p>
+<h3 id="推导-1"><a href="#推导-1" class="headerlink" title="推导"></a>推导</h3><p>复习高斯牛顿法：对于$min_\pmb{x}\ F(\pmb{x})&#x3D;\frac{1}{2}\parallel f(\pmb{x})\parallel_2^2$可以一阶泰勒展开$f(\pmb{x}+\Delta\pmb{x})\approx f(\pmb{x})+\pmb{J}(\pmb{x})^T\Delta\pmb{x}$，然后不断迭代</p>
+<p>回到最小化重投影误差的式子，求解上式可以用高斯牛顿法。记$\pmb{e}&#x3D; \pmb{u}_i-\frac{1}{s_i}\pmb{K}T\pmb{P}_i $对应高斯牛顿法的$f$，需要求出$\pmb{J}$</p>
+<p>这里$\pmb{e}$是$\pmb{T}$​的导数，李群不好求导，所以就换到李代数上用扰动模型求</p>
+<p>注意$\pmb{e}$是估计的像素坐标和真实的像素坐标之差，齐次坐标下是3维的，只是第3维一直是0</p>
+<p>设$\pmb{T}&#x3D;exp(\pmb{\xi}^\wedge)$，用扰动模型就是求$\pmb{J}&#x3D;\frac{\partial \pmb{e}}{\partial \delta\pmb{\xi}}$。扰动模型是在非齐次坐标下推的，所以下面转换到非齐次坐标，设$\pmb{P’}&#x3D;\begin{pmatrix}X’\Y’\Z’\1\end{pmatrix}$是空间点$\pmb{P}$的相机坐标系的齐次坐标，则有链式法则<br>$$<br>\pmb{J}&#x3D;\frac{\partial \pmb{e}}{\partial \pmb{P}’}\frac{\partial \pmb{P}’}{\partial \delta\pmb{\xi}}<br>$$<br>$\pmb{P}’$满足$s\pmb{u}&#x3D;\pmb{K}\pmb{P}’$（仍然在齐次坐标下，书上是变成非齐次坐标了，但我自己一推发现没区别，所以是全程齐次坐标），因此有下列变换求出链式法则后的第1项（和书上比就是多了一圈0其他一样）<br>$$<br>\begin{align}<br>&amp;\begin{pmatrix}su\sv\s\end{pmatrix}&#x3D;\begin{pmatrix} f_x&amp;0&amp;c_x&amp;0\0&amp;f_y&amp;c_y&amp;0\0&amp;0&amp;1&amp;0  \end{pmatrix}\begin{pmatrix}X’\Y’\Z’\1\end{pmatrix}\<br>\Rightarrow&amp;\begin{cases}<br>su&#x3D;f_xX’+c_xZ’\<br>sv&#x3D;f_yY’+c_yZ’\<br>s&#x3D;Z’<br>\end{cases}\<br>\Rightarrow&amp;\begin{cases}<br>u&#x3D;f_x\frac{X’}{Z’}+c_x\<br>v&#x3D;f_y\frac{Y’}{Z’}+c_y<br>\end{cases}\<br>\Rightarrow&amp;\frac{\partial \pmb{e}}{\partial \pmb{P}’}&#x3D;-\begin{pmatrix}\frac{\partial u}{\partial X’}&amp;\frac{\partial u}{\partial Y’}&amp;\frac{\partial u}{\partial Z’}&amp;\frac{\partial u}{\partial 1}  \\frac{\partial v}{\partial X’}&amp;\frac{\partial v}{\partial Y’}&amp;\frac{\partial v}{\partial Z’}&amp;\frac{\partial v}{\partial 1}   \  \frac{\partial 1}{\partial X’}&amp;\frac{\partial 1}{\partial Y’}&amp;\frac{\partial 1}{\partial Z’}&amp;\frac{\partial 1}{\partial 1} \end{pmatrix}&#x3D;-\begin{pmatrix}\frac{f_x}{Z’}&amp;0&amp;-\frac{f_xX’}{Z’^2}&amp;0\0&amp;\frac{f_y}{Z’}&amp;-\frac{f_yY’}{Z’^2}&amp;0\0&amp;0&amp;0&amp;0\end{pmatrix}_{3\times 4}<br>\end{align}<br>$$<br>前面推的扰动模型结果是$\frac{\partial (\pmb{T}\pmb{p})}{\partial \delta\pmb{\xi}}&#x3D;\begin{pmatrix}\pmb{I}&amp;-(\pmb{R}\pmb{p}+\pmb{t})^\wedge\0&amp;0’\end{pmatrix}$（前面李代数部分解释了这里就是齐次坐标的形式，所以现在还是在齐次坐标下）。相机坐标系是对世界坐标系进行了变换，和进行了扰动效果一样，所以$\pmb{T}\pmb{p}&#x3D;\pmb{P}’$，所以$\pmb{R}\pmb{p}+\pmb{t}$就相当于$\pmb{P}’$的前3维也就是非齐次坐标即$\pmb{R}\pmb{p}+\pmb{t}&#x3D;\begin{pmatrix}X’\Y’\Z’\end{pmatrix}$</p>
+<p>所以链式法则第2项结果为：<br>$$<br>\frac{\partial \pmb{P}’}{\partial \delta\pmb{\xi}}&#x3D;\begin{pmatrix}\pmb{I}&amp;-\begin{pmatrix}X’\Y’\Z’\end{pmatrix}^\wedge\0&amp;0’\end{pmatrix}&#x3D;\begin{pmatrix}1&amp;0&amp;0&amp;0&amp;Z’&amp;-Y’\0&amp;1&amp;0&amp;-Z&amp;0&amp;X’\0&amp;0&amp;1&amp;Y’&amp;-X’&amp;0\0&amp;0&amp;0&amp;0&amp;0&amp;0\end{pmatrix}_{4\times 6}<br>$$<br>合起来得到（和书上完全一样，除了因为齐次坐标而多出的一行0）<br>$$<br>\pmb{J}&#x3D;-\begin{pmatrix}\frac{f_x}{Z’}&amp;0&amp;-\frac{f_xX’}{Z’^2}&amp;0\0&amp;\frac{f_y}{Z’}&amp;-\frac{f_yY’}{Z’^2}&amp;0\0&amp;0&amp;0&amp;0\end{pmatrix}\begin{pmatrix}1&amp;0&amp;0&amp;0&amp;Z’&amp;-Y’\0&amp;1&amp;0&amp;-Z&amp;0&amp;X’\0&amp;0&amp;1&amp;Y’&amp;-X’&amp;0\0&amp;0&amp;0&amp;0&amp;0&amp;0\end{pmatrix}&#x3D;-\begin{pmatrix}\frac{f_x}{Z’}&amp;0&amp;-\frac{f_xX’}{Z’^2}&amp;-\frac{f_xX’Y’}{Z’^2}&amp;f_x+\frac{f_xX’^2}{Z’}&amp;-\frac{f_xY’}{Z’}\0&amp;\frac{f_y}{Z’}&amp;-\frac{f_yY’}{Z’^2}&amp;-f_y-\frac{f_yY’^2}{Z’^2}&amp;\frac{f_yX’Y’}{Z’^2}&amp;\frac{f_yX’}{Z’}\0&amp;0&amp;0&amp;0&amp;0&amp;0   \end{pmatrix}<br>$$<br><strong>大问题</strong>：书上把这个导数推出来就没了，我也不确定干啥用的，我猜的是，这个导数是配合高斯牛顿法迭代用？</p>
+<p>下面去看code去了</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 MXD の 大house
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;MXD
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="maoxindong123/giscus"
+    data-repo-id="R_kgDOJwh3jA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJwh3jM4CXRuC"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

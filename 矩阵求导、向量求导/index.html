@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>矩阵求导、向量求导 | MXD の 大house</title>
+        <meta name="author" content="MXD" />
+        <meta name="description" content="MXD need one corgi!" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/gura_avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 7.1.1"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>MXD の 大HOUSE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MXD の 大HOUSE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>矩阵求导、向量求导</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/28
+        </span>
+        
+        <span class="category">
+            <a href="/categories/math/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                math
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/math/" style="color: #03a9f4">math</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="1-基本情况"><a href="#1-基本情况" class="headerlink" title="1. 基本情况"></a>1. 基本情况</h1><p>机器学习中每次学一个模型都会遇到对向量or矩阵求导的情况，然后就每次都卡壳，所以不如先把这个学了</p>
+<p>回忆学习标量求导，会分用定义求（$f’(x)&#x3D;\lim_{\Delta x\rightarrow 0}{\frac{f(x+\Delta x)-f(x)}{\Delta x}}$）和用法则求（例如$e^x&#x3D;e^x,\frac{f(x)}{g(x)}&#x3D;\frac{f’(x)g(x)-g’(x)f(x)}{g^2(x)}$等等）</p>
+<p>所以对矩阵求导（向量可以视作特殊的矩阵）也会有2种方法，分别是定义求和用法则求</p>
+<p>因为机器学习一般遇到的函数是结果是标量，但自变量是矩阵，这种函数称为矩阵变元的标量函数，例如线性回归$loss(\pmb{\omega},b)&#x3D;\pmb{\omega}^T\pmb{x}+b$，所以本文只记录这种情况，而不讨论矩阵函数对矩阵求导的情况</p>
+<p>符号方面，实数用普通的表示$eg.a$，向量用加粗的表示$eg. \pmb{a}$（向量全是列向量，没行向量），矩阵用大写字母表示$eg. A$</p>
+<span id="more"></span>
+
+<h1 id="2-定义法"><a href="#2-定义法" class="headerlink" title="2. 定义法"></a>2. 定义法</h1><p>定义法就是说，函数对矩阵求导，实际就是先对矩阵的各个元素求导，然后再排成原矩阵</p>
+<p>例如求$f(\pmb{x})&#x3D;\pmb{a}^T\pmb{x}$的导数$\frac{df}{d\pmb{x}}$，其中$\pmb{a},\pmb{x}$都是n维列向量</p>
+<p>因为$f(\pmb{x})&#x3D;a_1x_1+a_2x_2+…+a_nx_n$，所以$\frac{df}{dx_1}&#x3D;a_1,\frac{df}{dx_2}&#x3D;a_2…$，所以排成向量就是$\begin{bmatrix}\frac{df}{dx_1}\ \frac{df}{dx_2}\ …\end{bmatrix}&#x3D;\begin{bmatrix}a_1\ a_2\ …\end{bmatrix}&#x3D;\pmb{a}$，所以$\frac{df}{d\pmb{x}}&#x3D;\pmb{a}$</p>
+<p>（矩阵同理）</p>
+<p>通过定义法，可以得到一些一眼的结论：</p>
+<p>1. </p>
+<p>定义法求得很麻烦，所以下面是微分法</p>
+<h1 id="3-微分法"><a href="#3-微分法" class="headerlink" title="3. 微分法"></a>3. 微分法</h1><p>对于标量的多元函数来说，全微分是对每个元求微分，然后求和，例如$df(x,y)&#x3D;\frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy$</p>
+<p>对于一个矩阵变元的标量函数来说，它的全微分是对矩阵的每个元素求微分，然后求和，很类似多元函数</p>
+<p>如果有函数$f(X)$，其中$X$是$n\times m$，那么可以由如下推导：<br>$$<br>\begin{aligned}<br>df&amp;&#x3D;\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^m{\frac{\partial f}{\partial X_{ij}}dX_{ij}}\<br>&amp;&#x3D;tr((\frac{\partial f}{\partial X})^TdX)<br>\end{aligned}<br>$$<br>第一个等式就是对矩阵的各个元素求微分，然后相加</p>
+<p>第二个等式中，$\frac{\partial f}{\partial X}&#x3D;\begin{bmatrix}\frac{\partial f}{\partial X_{11}} &amp; \frac{\partial f}{\partial X_{12}} &amp; … &amp; \frac{\partial f}{\partial X_{1m}}\ \frac{\partial f}{\partial X_{21}} &amp; \frac{\partial f}{\partial X_{22}} &amp; … &amp; \frac{\partial f}{\partial X_{2m}}\ … \ \frac{\partial f}{\partial X_{n1}} &amp; \frac{\partial f}{\partial X_{n2}} &amp; … &amp; \frac{\partial f}{\partial X_{nm}}\end{bmatrix}$，$dX&#x3D;\begin{bmatrix}dX_{11} &amp; dX_{12} &amp; … &amp; dX_{1m}\ dX_{21} &amp; dX_{22} &amp; … &amp; dX_{2m}\ … \dX_{n1} &amp; dX_{n2} &amp; … &amp; dX_{nm}\ \end{bmatrix}$，然后乘一下就会发现是一样的，而迹tr就是作用于方阵的主对角线之和$trX&#x3D;X_{11}+X_{22}+…$</p>
+<p>所以可以用微分的方法来计算导数，注意微分是$df,dX$这样的，导数是指$\frac{\partial f}{\partial X}$</p>
+<p>也就是说，我们可以先求出来$df$，然后右边只要变成$tr((\frac{\partial f}{\partial X})^TdX)$的形式，就可以得到$\frac{\partial f}{\partial X}$了</p>
+<p>但此时还是定义法，而微分法好就好在，它有一些性质，并且迹tr也有一些性质，全都很好用</p>
+<h3 id="3-1-矩阵微分的性质"><a href="#3-1-矩阵微分的性质" class="headerlink" title="3.1 矩阵微分的性质"></a>3.1 矩阵微分的性质</h3><p>下例的性质都有用，除了4，其他按照定义差不多是一眼</p>
+<ol>
+<li><p>加减法：$d(X\pm Y)&#x3D;dX\pm dY$</p>
+<p> 矩阵乘法：$d(XY)&#x3D;(dX)Y+X(dY)$</p>
+<p> 阿达玛乘积：$d(X\odot Y)&#x3D;X\odot dY+dX\odot Y$（阿达玛乘积就是2个形状相同的矩阵逐元素相乘）</p>
+</li>
+<li><p>转置：$d(X^T)&#x3D;(dX)^T$</p>
+<p> 迹：$dtr(X)&#x3D;tr(dX)$</p>
+</li>
+<li><p>逐元素函数：$d\sigma(X)&#x3D;\sigma’(X)\odot dX$</p>
+<p> 逐元素函数就是说一个标量函数，例如$e^x$，作用于一个矩阵的各个元素，然后把结果再拼成矩阵</p>
+<p> $\sigma’(X)$是逐元素求导数，即$\sigma’(X)&#x3D;\begin{bmatrix}\frac{\partial \sigma}{\partial x_{11}} &amp; \frac{\partial \sigma}{\partial x_{12}} &amp; … &amp; \frac{\partial \sigma}{\partial x_{1m}}\ \frac{\partial \sigma}{\partial x_{21}} &amp; \frac{\partial \sigma}{\partial x_{22}} &amp; … &amp; \frac{\partial \sigma}{\partial x_{2m}}\…\ \frac{\partial \sigma}{\partial x_{n1}} &amp; \frac{\partial \sigma}{\partial x_{n2}} &amp; … &amp; \frac{\partial \sigma}{\partial x_{nm}}\end{bmatrix}$</p>
+<p> 例如有$sin(X)$，则$\begin{aligned}dsin(X)&amp;&#x3D;\begin{bmatrix}cosx_{11}dx_{11} &amp; cosx_{12}dx_{12} &amp; … &amp; cosx_{1m}dx_{1m}\ cosx_{21}dx_{21} &amp; cosx_{22}dx_{22} &amp; … &amp; cosx_{2m}dx_{2m}\ …\ cosx_{n1}dx_{n1} &amp; cosx_{n2}dx_{n2} &amp; … &amp; cosx_{nm}dx_{nm}\end{bmatrix}\&amp;&#x3D;\begin{bmatrix}cosx_{11} &amp; cosx_{12} &amp; … &amp; cosx_{1m}\ cosx_{21} &amp; cosx_{22} &amp; … &amp; cosx_{2m}\ …\ cosx_{n1} &amp; cosx_{n2} &amp; … &amp; cosx_{nm}\end{bmatrix}\odot \begin{bmatrix}dx_{11} &amp; dx_{12} &amp; … &amp; dx_{1m}\ dx_{21} &amp; dx_{22} &amp; … &amp; dx_{2m}\ …\ dx_{n1} &amp; dx_{n2} &amp; … &amp; dx_{nm}\end{bmatrix}&#x3D;sin’(X)\odot dX\end{aligned}$</p>
+</li>
+<li><p>逆矩阵：$dX^{-1}&#x3D;-X^{-1}dXX^{-1}$不会推</p>
+<p> 行列式：$d|X|&#x3D;|X|tr(X^{-1}dX)$也不会推</p>
+</li>
+</ol>
+<h3 id="3-2-迹的性质"><a href="#3-2-迹的性质" class="headerlink" title="3.2 迹的性质"></a>3.2 迹的性质</h3><p>迹的性质我觉得主要就是有了交换律，也就是3、4，但1、2其实本来就是一眼</p>
+<ol>
+<li><p>标量：$tr(x)&#x3D;x$</p>
+</li>
+<li><p>转置：$tr(A^T)&#x3D;tr(A)$</p>
+</li>
+<li><p>矩阵乘法交换律：$tr(AB)&#x3D;tr(BA)$</p>
+</li>
+<li><p>矩阵乘法和阿达玛乘积有一个特殊的交换律：$tr(A^T(B\odot C))&#x3D;tr((A\odot B)^TC)$</p>
+<p> 这个交换律要求：$A,B,C$必须同维度</p>
+<p> 不同维度的反例：</p>
+</li>
+</ol>
+<h3 id="3-3-简单实战"><a href="#3-3-简单实战" class="headerlink" title="3.3 简单实战"></a>3.3 简单实战</h3><ol>
+<li><p>设$f&#x3D;\pmb{a}^TX\pmb{b}$，求$\frac{\partial f}{\partial X}$</p>
+<p> 列微分法的式子：$df&#x3D;d(\pmb{a}^TX\pmb{b})&#x3D;(d\pmb{a}^T)X\pmb{b}+\pmb{a}^T(dX)\pmb{b}+\pmb{a}^TX(db)&#x3D;\pmb{a}^T(dX)\pmb{b}$</p>
+<p> 两边套上迹：$df&#x3D;tr(\pmb{a}^T(dX)\pmb{b})$，因为$df$是一个标量，所以$tr(df)&#x3D;df$</p>
+<p> 迹里的矩阵乘法有交换律：$df&#x3D;tr(\pmb{b}\pmb{a}^T(dX))$</p>
+<p> 注意微分的形式是$tr((\frac{\partial f}{\partial X})^TdX)$，要转置一下才行：$df&#x3D;tr(\pmb{a}\pmb{b}^T(dX))$</p>
+<p> 所以得到结果：$\frac{\partial f}{\partial X}&#x3D;\pmb{a}\pmb{b}^T$</p>
+</li>
+<li><p>设$f&#x3D;\pmb{a}^Te^{X\pmb{b}}$，求$\frac{\partial f}{\partial X}$</p>
+<p> 列微分法的式子：$df&#x3D;d(\pmb{a}^Te^{X\pmb{b}})&#x3D;(d\pmb{a}^T)e^{X\pmb{b}}+\pmb{a}^T (de^{X\pmb{b}})&#x3D;\pmb{a}^T(e^{X\pmb{b}}\odot d(X\pmb{b}))&#x3D;\pmb{a}^T(e^{X\pmb{b}}\odot (dX\pmb{b}))$</p>
+<p> （上式最后一个等号$d(X\pmb{b})&#x3D;dX\pmb{b}$是因为，向量可以看做是矩阵，所以这是矩阵乘法的微分，用微分的性质1即可）</p>
+<p> 两边套上迹再做变换：$df&#x3D;tr(\pmb{a}^T(e^{X\pmb{b}}\odot (dX\pmb{b})))&#x3D;tr((\pmb{a}\odot e^{X\pmb{b}})^TdX\pmb{b})&#x3D;tr(\pmb{b}(\pmb{a}\odot e^{X\pmb{b}})^TdX)&#x3D;tr(((\pmb{a}\odot e^{X\pmb{b}})\pmb{b}^T)^TdX)$</p>
+<p> 所以得到结果：$\frac{\partial f}{\partial X}&#x3D;(\pmb{a}\odot e^{X\pmb{b}}) \pmb{b}^T$</p>
+</li>
+</ol>
+<h3 id="3-4-链式求导"><a href="#3-4-链式求导" class="headerlink" title="3.4 链式求导"></a>3.4 链式求导</h3><p>前面是简单实战，后面是综合实战，差就差在链式求导上</p>
+<p>矩阵变元的情况下，链式求导是$f\rightarrow Y \rightarrow X$，<strong>不能直接按照标量的链式求导来</strong></p>
+<p>正儿八经的方法没看懂（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24863977">正儿八经的方法</a>），这涉及到矩阵变元的矩阵函数，而本篇尽可能只涉及矩阵变元的标量函数</p>
+<p>一个偷懒一些的方法就是(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24709748">求导术上</a>)，慢慢地一步一步求。</p>
+<p>例如有$f(Y)$，而$Y$又是$X$的函数，则可以先列出$df&#x3D;tr(\frac{\partial f}{\partial Y}^TdY)$，然后再用$dX$表示$dY$，然后代进去</p>
+<p>举例：设$f(Y)$，并且$Y&#x3D;AXB$，求$\frac{\partial f}{\partial X}$</p>
+<p>那么先列出$df&#x3D;tr(\frac{\partial f}{\partial Y}^TdY)$</p>
+<p>又有$dY&#x3D;AdXB$，代入就有$df&#x3D;tr(\frac{\partial f}{\partial Y}^TAdXB)&#x3D;tr(B\frac{\partial f}{\partial Y}^TAdX)&#x3D;tr((A^T\frac{\partial f}{\partial Y}B^T)^TdX)$</p>
+<p>就有结果$\frac{\partial f}{\partial X}&#x3D;A^T\frac{\partial f}{\partial Y}B^T$</p>
+<h3 id="3-5-综合实战"><a href="#3-5-综合实战" class="headerlink" title="3.5 综合实战"></a>3.5 综合实战</h3><p>这里会有实际机器学习的例子</p>
+<ol>
+<li><p>设$f&#x3D;tr(Y^TMY),Y&#x3D;\sigma(WX)$，求$\frac{\partial f}{\partial X}$，为了方便令$M$是对称矩阵</p>
+<p> 列微分的式子，变换后直接套了tr所以继续变换：$df&#x3D;dtr(Y^TMY)&#x3D;tr(d(Y^TMY))&#x3D;tr((dY^T)MY+Y^TM(dY))&#x3D;tr((dY)^TMY+Y^TM(dY))$</p>
+<p> 这一步变形没想到：$df&#x3D;tr((dY)^TMY)+tr(Y^TM(dY))&#x3D;tr(Y^TM^T(dY))+tr(Y^TM(dY))&#x3D;tr(Y^T(M^T+M)(dY))&#x3D;tr(2Y^TM(dY))$</p>
+<p> 上式就差个$dY$，所以列$dY$的微分式子，这里用的是逐元素函数的性质：$dY&#x3D;\sigma’(WX)\odot d(WX)&#x3D;\sigma’(WX)\odot (WdX)$</p>
+<p> 代回去继续化简：$df&#x3D;tr((2Y^TM)(\sigma’(WX)\odot (WdX)))&#x3D;tr(((2MY)\odot \sigma’(WX))^TWdX)&#x3D;tr(W^T((2MY)\odot \sigma’(WX))^TdX)$</p>
+<p> 所以得到结果：$\frac{\partial f}{\partial X}&#x3D;W^T((2MY)\odot \sigma’(WX))$</p>
+</li>
+<li><p>DNN的反向传播BP推导（求导术的BP公式没看懂，下列BP公式和符号来源是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6422831.html">这里</a>）</p>
+<p> loss函数是：$J(W,\pmb{b})$</p>
+</li>
+<li></li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 MXD の 大house
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;MXD
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="maoxindong123/giscus"
+    data-repo-id="R_kgDOJwh3jA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJwh3jM4CXRuC"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>
