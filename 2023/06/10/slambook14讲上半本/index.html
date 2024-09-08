@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>相机模型和多视几何 | MXDの大house</title>
+    <meta name="author" content="MXD" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/gura_avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>MXDの大HOUSE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MXDの大HOUSE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>相机模型和多视几何</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/10
+        </span>
+        
+        <span class="category">
+            <a href="/categories/SLAM/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                SLAM
+            </a>
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h3 id="李群">李群</h3>
+<p>群可以看作是一个集合+一个运算，如果集合的元素是连续的就叫李群</p>
+<p>旋转矩阵R与矩阵乘法构成一个李群<span
+class="math inline">\(SO(3)=\{R\in
+\R^{3\times3}|RR^T=I,det(R)=1  \}\)</span>，变换矩阵T与矩阵乘法构成一个李群<span
+class="math inline">\(SE(3)=\{T=\begin{pmatrix}R&amp;t\\0&amp;1\end{pmatrix}\in
+\R^{4\times4}|R\in SO(3),t\in\R^3  \}\)</span></p>
+<p>将<span class="math inline">\(R\)</span>视作一个随时间变化的函数<span
+class="math inline">\(R(t)\)</span>来描述相机的位姿，根据<span
+class="math inline">\(RR^T=I\)</span>可以推导出 <span
+class="math display">\[
+R&#39;(t)R(t)^T=\phi(t)^\wedge  \\
+R&#39;(t)=\phi(t_0)^\wedge R(t)=\begin{pmatrix}0&amp;-\phi_3 &amp;
+\phi_2\\\phi_3 &amp;0&amp;-\phi_1\\-\phi_2&amp;\phi_1&amp; 0
+\end{pmatrix}R(t)\overset{def}{=}\phi_0^\wedge R(t)
+\]</span> 第一个式子可知，在任意时刻t，都会有一个旋转矩阵<span
+class="math inline">\(R\)</span>都对应一个<span
+class="math inline">\(\phi^\wedge\)</span></p>
+<p>第二个式子视作微分方程求解得到如下，可知给出一个<span
+class="math inline">\(\phi\)</span>可以对应一个<span
+class="math inline">\(R=e^{\phi}\)</span> <span class="math display">\[
+R(t)=e^{\phi_0^\wedge t }
+\]</span> 也就是，<span class="math inline">\(R\)</span>和<span
+class="math inline">\(\phi^\wedge\)</span>差不多是一一对应（如果旋转度数限制在<span
+class="math inline">\(0\sim360\)</span>就是一一对应）</p>
+<span id="more"></span>
+<h3 id="李代数">李代数</h3>
+<p>李代数是一种集合+一种运算，一个李群会对应一个李代数</p>
+<p><span class="math inline">\(\phi\)</span>就是一种李代数<span
+class="math inline">\(so(3)=\{\phi\in\R^3
+,\Phi=\phi^\wedge\in\R^{3\times3} \}\)</span>，与李群<span
+class="math inline">\(SO(3)=\{R\in
+\R^{3\times3}|RR^T=I,det(R)=1  \}\)</span>对应（向量和反对称矩阵一一对应，所以定义成向量<span
+class="math inline">\(\R^3\)</span> or 反对称矩阵<span
+class="math inline">\(\R^{3\times3}\)</span>均可）</p>
+<p>同样，<span
+class="math inline">\(se(3)=\{\xi=\begin{pmatrix}\rho\\\phi
+\end{pmatrix} \in\R^6,\rho\in\R^3,\phi\in so(3),\xi^\wedge
+=\begin{pmatrix}\phi^\wedge &amp;\rho\\
+0&amp;0\end{pmatrix}\in\R^{4\times4} \}\)</span>是一种李代数，与<span
+class="math inline">\(SE(3)=\{T=\begin{pmatrix}R&amp;t\\0&amp;1\end{pmatrix}\in
+\R^{4\times4}|R\in SO(3),t\in\R^3  \}\)</span>对应</p>
+<p><span class="math inline">\(se(3)\)</span>的<span
+class="math inline">\(\wedge\)</span>不表示反对称矩阵，而表示<span
+class="math inline">\(\xi^\wedge =\begin{pmatrix}\phi^\wedge
+&amp;\rho\\0&amp;0\end{pmatrix}\in \R^{4\times4}\)</span></p>
+<p>（2个李代数里的运算略，好像没用上）</p>
+<h3 id="李群与李代数互转">李群与李代数互转</h3>
+<p><span
+class="math inline">\(so(3)\)</span>是3维向量的集合，一个向量<span
+class="math inline">\(\pmb{\phi}\in so(3)\)</span>可以分成模长<span
+class="math inline">\(\theta\)</span>与方向向量<span
+class="math inline">\(\pmb{a}\)</span>的乘积<span
+class="math inline">\(\pmb{\phi}=\theta \pmb{a}\)</span></p>
+<p>想要计算<span
+class="math inline">\(\pmb{R}=e^{\pmb{\phi}^\wedge}\)</span>，可以用泰勒展开，并且<span
+class="math inline">\(\pmb{\phi}=\theta \pmb{a}\)</span>中的<span
+class="math inline">\(\pmb{a}\)</span>是方向向量所以可以优化幂次，最后得到下式
+<span class="math display">\[
+\pmb{R}=e^{\theta\pmb{a}^\wedge}=cos\theta
+\mathbf{I}+(1-cos\theta)\mathbf{a}\mathbf{a}^T+sin\theta
+\mathbf{a}^\wedge
+\]</span> 与Rodrigues公式（计算旋转矩阵与旋转向量互转）一样，所以<span
+class="math inline">\(so(3)\)</span>实际就是旋转向量组成的空间，所以可以同Rodrigues公式一样从<span
+class="math inline">\(\pmb{R}\)</span>计算<span
+class="math inline">\(\theta,\pmb{a}\)</span></p>
+<p>再同理可以得到<span class="math inline">\(SE(3)\)</span>与<span
+class="math inline">\(se(3)\)</span>的互转，下面是书上的总结图</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240226173307897.png"
+alt="image-20240226173307897" />
+<figcaption aria-hidden="true">image-20240226173307897</figcaption>
+</figure>
+<h3 id="啥">啥</h3>
+<p>前面得出<span class="math inline">\(R,T\)</span>可以与<span
+class="math inline">\(\phi,\xi\)</span>一一对应互转，下面有<span
+class="math inline">\(R,T\)</span>运 算规则的转换 <span
+class="math display">\[
+\begin{align}
+\begin{cases}
+exp(\Delta\phi^\wedge)exp(\phi^\wedge)\approx
+exp((\pmb{J_l^{-1}}\Delta\phi+\phi)^\wedge)\\
+exp(\pmb{J_l}\Delta\phi^\wedge)exp(\phi^\wedge)\approx
+exp((\Delta\phi+\phi)^\wedge)\\
+\end{cases}\\
+where\ \begin{cases}
+J_l^{-1}=\frac{\theta}{2}cot\frac{\theta}{2}\pmb{I}+(1-\frac{\theta}{2}cot\frac{\theta}{2})\pmb{a}\pmb{a}^T-\frac{\theta}{2}\pmb{a}^\vee\\
+J_l=\frac{sin\theta}{\theta}\pmb{I}+(1-\frac{sin\theta}{\theta})\pmb{a}\pmb{a}^T+\frac{1-cos\theta}{\theta}\pmb{a}^\wedge
+\end{cases}
+\end{align}
+\]</span> 对于一个旋转矩阵<span
+class="math inline">\(exp(\phi^\wedge)\)</span>，如果乘一个新的旋转矩阵<span
+class="math inline">\(exp(\Delta\phi^\wedge)\)</span>，约等于原本的李代数<span
+class="math inline">\(\phi\)</span>加上<span
+class="math inline">\(\pmb{J}_l^{-1}\)</span>倍的新的李代数<span
+class="math inline">\(\Delta\phi\)</span>（但后续<span
+class="math inline">\(J_l\)</span>用不上）</p>
+<p><span class="math inline">\(SE(3)\)</span>与<span
+class="math inline">\(se(3)\)</span>​同理，但公式没细给</p>
+<h3 id="求导和扰动模型">求导和扰动模型</h3>
+<p>李代数的作用是，李群没有定义加法只定义了乘法，乘法求导也会包含加法所以只有乘法就没法求导所以改为在李代数上求导</p>
+<p>分直接求导（略）和扰动模型（下面）</p>
+<p>假设有空间点<span
+class="math inline">\(\pmb{p}\)</span>进行了旋转<span
+class="math inline">\(\pmb{R}\)</span>，用李代数可以得出<span
+class="math inline">\(\frac{\partial (\pmb{R}\pmb{p})}{\partial
+\pmb{\phi}}=-(\pmb{R}\pmb{p})^\wedge\)</span>（<span
+class="math inline">\(\phi\)</span>是<span class="math inline">\(\Delta
+\pmb{R}\)</span>对应的李代数）</p>
+<p>假设有空间点<span
+class="math inline">\(\pmb{p}\)</span>进行了变换<span
+class="math inline">\(\pmb{T}\)</span>，同理得出<span
+class="math inline">\(\frac{\partial (\pmb{T}\pmb{p})}{\partial
+\pmb{\delta\xi}}=\begin{pmatrix}\pmb{I}&amp;-(\pmb{R}\pmb{p}+\pmb{t})^\wedge\\0&amp;0   \end{pmatrix}\)</span></p>
+<p>上式解释：</p>
+<ol type="1">
+<li><span class="math inline">\(\delta\xi\)</span>是<span
+class="math inline">\(\Delta T\)</span>​对应的李代数；</li>
+<li>结果的形状：结果是一个<span class="math inline">\(4\times
+6\)</span>的矩阵，<span
+class="math inline">\(-(\pmb{R}\pmb{p}+\pmb{t})^\wedge\)</span>是<span
+class="math inline">\(4\times 4\)</span>但第4行是全0（看前面对于<span
+class="math inline">\(\wedge\)</span>的解释），所以那个<span
+class="math inline">\(\pmb{I}\)</span>是3阶单位阵，下面全是0，所以这<span
+class="math inline">\(4\times 6\)</span>是前3行有非0数，第4行是全0</li>
+<li>非齐次坐标形式（BA推导用到）：这里<span
+class="math inline">\(\pmb{p}\)</span>是齐次坐标因为<span
+class="math inline">\(\pmb{T}\)</span>就是利用齐次坐标把旋转+平移变成一次矩阵乘法了，所以如果想要非齐次坐标的形式把第4行0去掉即可<span
+class="math inline">\(\frac{\partial (\pmb{T}\pmb{p})}{\partial
+\pmb{\delta\xi}}=\begin{pmatrix}\pmb{I}&amp;-(\pmb{R}\pmb{p}+\pmb{t})^\wedge  \end{pmatrix}\)</span></li>
+</ol>
+<p>（<span class="math inline">\(\delta\xi\)</span>是<span
+class="math inline">\(\Delta T\)</span>对应的李代数，这里<span
+class="math inline">\(\pmb{p}\)</span>是齐次坐标，结果是一个<span
+class="math inline">\(4\times 6\)</span>的矩阵，<span
+class="math inline">\(-(\pmb{R}\pmb{p}+\pmb{t})^\wedge\)</span>是<span
+class="math inline">\(4\times 4\)</span>但第4行是全0（看前面对于<span
+class="math inline">\(\wedge\)</span>的解释），所以那个<span
+class="math inline">\(\pmb{I}\)</span>是3阶单位阵，下面全是0，所以这<span
+class="math inline">\(4\times 6\)</span>是前3行有非0数，第4行是全0）</p>
+<p><strong>我对求导和扰动模型的理解：</strong>书上先介绍了直接求导的方法，又介绍了扰动模型的方法。这俩的区别就是：</p>
+<p>直接求导是对李群求导<span
+class="math inline">\(\frac{\partial(\pmb{R}\pmb{P})}{\partial
+\pmb{R}}\)</span>，但推导的时候是全部转到李代数上推导了；</p>
+<p>扰动模型是对李代数求导<span
+class="math inline">\(\frac{\partial(\pmb{R}\pmb{P})}{\partial
+\pmb{\phi}}\)</span>​，还是全部转到李代数上推导</p>
+<p>因为李代数和李群一一对应，所以扰动模型不是严格意义的求导，求出的是某个函数<span
+class="math inline">\(F\)</span>关于李代数的导</p>
+<p>用处就是（BA就是这么用的），想要求<span
+class="math inline">\(F(\pmb{R})\)</span>的极值点的时候，改成<span
+class="math inline">\(F(exp(\pmb{\xi}))\)</span>，然后求<span
+class="math inline">\(\frac{\partial F}{\partial
+\pmb{\xi}}\)</span>，得到<span
+class="math inline">\(\pmb{\xi}_0\)</span>是极值点，则<span
+class="math inline">\(R_0=exp(\pmb{\xi}_0)\)</span>就是<span
+class="math inline">\(F\)</span>的极值点</p>
+<h3 id="总结">总结</h3>
+<p>这段得出来，每个李群会与一个李代数一一对应，得出了<span
+class="math inline">\(SO(3)\)</span>与<span
+class="math inline">\(so(3)\)</span>的互转公式、<span
+class="math inline">\(SO(3)\)</span>的运算怎么在<span
+class="math inline">\(so(3)\)</span>上进行、<span
+class="math inline">\(SO(3)\)</span>求导怎么求。<span
+class="math inline">\(SE(3)\)</span>与<span
+class="math inline">\(se(3)\)</span>相同</p>
+<p><strong>单目相机跳</strong></p>
+<h3 id="双目相机">双目相机</h3>
+<p>假设左眼相机、右眼相机水平放置，光心距离是基线记为<span
+class="math inline">\(b\)</span></p>
+<p>任意空间点<span
+class="math inline">\(P\)</span>在左右眼相机的像素坐标坐标只有水平坐标有差别，记作<span
+class="math inline">\(u_L,u_R\)</span>，记<span
+class="math inline">\(z\)</span>是P到光心的距离，如下图</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/deea3248c2f760bcdcc07772fc5e214.jpg"
+alt="deea3248c2f760bcdcc07772fc5e214" />
+<figcaption
+aria-hidden="true">deea3248c2f760bcdcc07772fc5e214</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/v2-6d56f0513c46f1574f9aa0dd70369bb6_720w.webp"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>则有关系 <span class="math display">\[
+\frac{z-f}{z}=\frac{b-u_L+u_R}{b}\\
+\Rightarrow z=\frac{fb}{d}, d=u_L-u_R
+\]</span>
+z是空间点P到光心的距离，f是焦距也就是成像平面到光心的距离，d称为视差</p>
+<p>视差最小为一个像素因此双目深度有最大值</p>
+<p>一张左图一张右图建立深度图建立点云：代码没看懂，需要<code>StereoSGBM</code>计算出视差图（视差图怎么实现稠密的，特征点很稀疏），然后用双目相机模型（即上面的公式）画出点云图（主要就是视差图怎么得到的不知道，貌似是有假设相同像素点or块都在同一水平线上，然后分块匹配的所以视差图全是折线）</p>
+<h1 id="非线性优化">非线性优化</h1>
+<p>运动方程、观测方程 <span class="math display">\[
+\begin{align}
+\pmb{x}_k&amp;=f(\pmb{x}_{k-1},\pmb{u}_k)+,\pmb{w}_k\\
+z_{k,j}&amp;=h(\pmb{y}_j,\pmb{x}_k)+\pmb{v}_{k,j}
+\end{align}
+\]</span> <span class="math inline">\(x\in SE(3)\)</span>，<span
+class="math inline">\(\pmb{y}\)</span>是路标（即空间点的世界坐标，所以观测方程就是针孔相机模型），<span
+class="math inline">\(\pmb{w},\pmb{v}\)</span>是噪声，<span
+class="math inline">\(z\)</span>是观测的某个路标的像素位置</p>
+<p>我好像了解贝叶斯和最大似然估计了 <span class="math display">\[
+\underbrace{P(B|A)}_{后验}=\frac{P(A|B)P(B)}{P(A)}\propto
+\underbrace{P(A|B)}_{似然}\underbrace{P(B)}_{先验}\\
+\Rightarrow B_{MEL}=argmax\ P(B|A)=argmax\ P(A|B)
+\]</span>
+（SLAM14讲P116）在有了观测A的情况下估计B，就是找在A的情况下最可能发生的B即<span
+class="math inline">\(P(B|A)\)</span>最大的那个B，贝叶斯公式得出等于找B的概率<span
+class="math inline">\(\times\)</span>​在B发生的情况下A发生概率最大的那个A。如果先验没有，就是找最大似然概率</p>
+<p>SLAM14讲的状态估计问题就是把运动方程和观测方程代入了最大似然估计，其他没啥了</p>
+<h2 id="非线性最小二乘">非线性最小二乘</h2>
+<p>求解<span class="math inline">\(min_\pmb{x}\
+F(\pmb{x})=\frac{1}{2}\parallel f(\pmb{x})\parallel_2^2\)</span></p>
+<p>如果<span
+class="math inline">\(f(\pmb{x})\)</span>比较简单，则可以对<span
+class="math inline">\(F(\pmb{x})\)</span>​求导令=0</p>
+<p>如果<span
+class="math inline">\(f(\pmb{x})\)</span>不够简单，则泰勒展开，用简单的多项式近似原函数，然后迭代求解（因为此时是近似所以每次使得目标函数变小后重新近似）。迭代方法是从一个初始值<span
+class="math inline">\(\pmb{x}_0\)</span>开始，每次找一个增量<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>使得<span
+class="math inline">\(F(\pmb{x}_k+\Delta\pmb{x}_k)\)</span>达到最小值，直到<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>足够小</p>
+<p>假设第k次迭代，将<span
+class="math inline">\(F(\pmb{x})\)</span>泰勒在<span
+class="math inline">\(\pmb{x}_k\)</span>​处展开得到<span
+class="math inline">\(F(\pmb{x})\)</span>的近似 <span
+class="math display">\[
+F(\pmb{x}_k+\Delta\pmb{x}_k)\approx
+F(\pmb{x}_k)+\pmb{J}(\pmb{x}_k)^T\Delta\pmb{x}_k+\frac{1}{2}\Delta\pmb{x}_k^T\pmb{H}(\pmb{x}_k)\Delta\pmb{x}_k
+\]</span> 选择保留一阶项，此时目标函数相当于<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>的一次函数，则取梯度的反方向<span
+class="math inline">\(\Delta\pmb{x}_k=-\pmb{J}(\pmb{x}_k)\)</span>就可以使函数值下降，称为最速下降法</p>
+<p>选择保留二阶项，则此时相当于<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>的二次函数，求导令=0得到<span
+class="math inline">\(\pmb{H}\Delta\pmb{x}_k=-\pmb{J}\)</span>，称为牛顿法</p>
+<p>最速下降法和牛顿法相当于用一次 or
+二次函数近似原函数，最速下降法迭代次数可能较多，牛顿法需要计算<span
+class="math inline">\(\pmb{H}\)</span>算得慢</p>
+<p>还可以展开<span class="math inline">\(f(\pmb{x})\)</span>而不是<span
+class="math inline">\(F(\pmb{x})\)</span>有<span
+class="math inline">\(f(\pmb{x}+\Delta\pmb{x})\approx
+f(\pmb{x})+\pmb{J}(\pmb{x})^T\Delta\pmb{x}\)</span>。按迭代方法现在需要找<span
+class="math inline">\(\Delta\pmb{x}\)</span>使得<span
+class="math inline">\(\frac{1}{2}\parallel
+f(\pmb{x})+\pmb{J}(\pmb{x})^T\Delta\pmb{x}\parallel_2^2\)</span>达到极小值，展开平方项依然是<span
+class="math inline">\(\Delta\pmb{x}\)</span>的二次函数所以求导令=0得到<span
+class="math inline">\(\underbrace{\pmb{J}(\pmb{x})\pmb{J}^T(\pmb{x})}_{\pmb{H}(\pmb{x})}\Delta\pmb{x}=\underbrace{-\pmb{J}(\pmb{x})f(\pmb{x})}_{\pmb{g}(\pmb{x})}\)</span>即<span
+class="math inline">\(\pmb{H}\Delta\pmb{x}=\pmb{g}\)</span>，称为高斯牛顿法</p>
+<p>高斯牛顿法的迭代过程变为：初始选<span
+class="math inline">\(\pmb{x}_0\)</span>，第k次求解<span
+class="math inline">\(\pmb{H}\Delta\pmb{x}_k=\pmb{g}\)</span>得到<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>，然后<span
+class="math inline">\(\pmb{x}_{k+1}=\pmb{x}_k+\Delta\pmb{x}_k\)</span>，直到<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>足够小</p>
+<p>高斯牛顿法与牛顿法对比，有点像用<span
+class="math inline">\(\pmb{H}=\pmb{J}\pmb{J}^T\)</span>近似真正的Hessian矩阵<span
+class="math inline">\(\pmb{H}\)</span>（二者等式右边也不一样）。但这个近似只有在距离展开点足够近效果才好，所以可以对<span
+class="math inline">\(\Delta\pmb{x}_k\)</span>添加范围限制称为信赖区域，用原函数的差值与近似的差值的比来评价近似的好坏<span
+class="math inline">\(\rho=\frac{f(\pmb{x}+\Delta\pmb{x})-f(\pmb{x})}{\pmb{J}(\pmb{x}^T\Delta\pmb{x})}\)</span>，只有比例接近1是最好的（<strong>书上的没看懂，为什么<span
+class="math inline">\(\rho\)</span>比较大是放大近似范围？不是应该只要离1远就减小近似范围吗？</strong>），高斯牛顿法加上信赖区域称为列文伯格-马夸尔特优化</p>
+<h2 id="code-for-手写">code for 手写</h2>
+<p>假设<span class="math inline">\(f(x)=exp(ax^2+bx+c)+w,\
+w\sim(0,\sigma^2)\)</span>，自己找个abc的值作为真实值，再加上噪声生成观测值，然后对abc取个初值开始迭代。会使用一批观测值进行迭代，类似mini
+batch</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;Eigen/Core&gt;
+#include &lt;Eigen/Dense&gt;
+
+using namespace std;
+using namespace Eigen;
+
+int main(int argc, char **argv) &#123;
+    double ar = 1.0, br = 2.0, cr = 1.0;         // 真实参数值
+    double ae = 2.0, be = -1.0, ce = 0.65;        // 估计参数值
+    int N = 1000;                                 // 数据点
+    double w_sigma = 1.0;                        // 噪声Sigma值
+    double inv_sigma = 1.0 / w_sigma;
+    cv::RNG rng;                                 // OpenCV随机数产生器
+
+    vector&lt;double&gt; x_data, y_data;      // 数据
+    for (int i = 0; i &lt; N; i++) &#123;
+        double x = (double)i / N;
+        x_data.push_back(x);
+        y_data.push_back(exp(ar * x * x + br * x + cr) + rng.gaussian(w_sigma * w_sigma));
+    &#125;
+
+    // 开始Gauss-Newton迭代
+    int iterations = 100;    // 迭代次数
+    double cost = 0, lastCost = 0;  // 本次迭代的cost和上一次迭代的cost
+
+    chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+    for (int iter = 0; iter &lt; iterations; iter++) &#123;
+
+        Matrix3d H = Matrix3d::Zero();             // Hessian = J^T W^&#123;-1&#125; J in Gauss-Newton
+        Vector3d b = Vector3d::Zero();             // bias
+        cost = 0;
+
+        for (int i = 0; i &lt; N; i++) &#123;
+            double xi = x_data[i], yi = y_data[i];  // 第i个数据点
+            double error = yi - exp(ae * xi * xi + be * xi + ce);
+            Vector3d J; // 雅可比矩阵
+            J[0] = -xi * xi * exp(ae * xi * xi + be * xi + ce);  // de/da
+            J[1] = -xi * exp(ae * xi * xi + be * xi + ce);  // de/db
+            J[2] = -exp(ae * xi * xi + be * xi + ce);  // de/dc
+
+            H += inv_sigma * inv_sigma * J * J.transpose();
+            b += -inv_sigma * inv_sigma * error * J;
+
+            cost += error * error;
+        &#125;
+
+        // 求解线性方程 Hx=b
+        Vector3d dx = H.ldlt().solve(b);
+        if (isnan(dx[0])) &#123;
+            cout &lt;&lt; &quot;result is nan!&quot; &lt;&lt; endl;
+            break;
+        &#125;
+
+        if (iter &gt; 0 &amp;&amp; cost &gt;= lastCost) &#123;
+            cout &lt;&lt; &quot;cost: &quot; &lt;&lt; cost &lt;&lt; &quot;&gt;= last cost: &quot; &lt;&lt; lastCost &lt;&lt; &quot;, break.&quot; &lt;&lt; endl;
+            break;
+        &#125;
+
+        double step=0.1;
+        ae += step*dx[0];
+        be += step*dx[1];
+        ce += step*dx[2];
+
+//        ae += dx[0];
+//        be += dx[1];
+//        ce += dx[2];
+
+        lastCost = cost;
+
+        cout &lt;&lt; &quot;total cost: &quot; &lt;&lt; cost &lt;&lt; &quot;, \t\tupdate: &quot; &lt;&lt; dx.transpose() &lt;&lt;
+             &quot;\t\testimated params: &quot; &lt;&lt; ae &lt;&lt; &quot;,&quot; &lt;&lt; be &lt;&lt; &quot;,&quot; &lt;&lt; ce &lt;&lt; endl;
+    &#125;
+
+    chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+    chrono::duration&lt;double&gt; time_used = chrono::duration_cast&lt;chrono::duration&lt;double&gt;&gt;(t2 - t1);
+    cout &lt;&lt; &quot;solve time cost = &quot; &lt;&lt; time_used.count() &lt;&lt; &quot; seconds. &quot; &lt;&lt; endl;
+
+    cout &lt;&lt; &quot;estimated abc = &quot; &lt;&lt; ae &lt;&lt; &quot;, &quot; &lt;&lt; be &lt;&lt; &quot;, &quot; &lt;&lt; ce &lt;&lt; endl;
+    return 0;
+&#125;</code></pre>
+<p>手写的代码原始的没写step，要拟合的是一个二次曲线，如果把<code>ce</code>改一下就容易从这边一步跨到那一边，就会如图1直接break了，添上<code>step=0.1</code>就可以正确拟合了</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150507800.png"
+alt="image-20240303150507800" />
+<figcaption aria-hidden="true">image-20240303150507800</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150432767.png"
+alt="image-20240303150432767" />
+<figcaption aria-hidden="true">image-20240303150432767</figcaption>
+</figure>
+<h2 id="code-for-ceres">code for ceres</h2>
+<p>书上的ceres拟合曲线</p>
+<pre class="cpp"><code>//
+// Created by xiang on 18-11-19.
+//
+
+#include &lt;iostream&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;ceres/ceres.h&gt;
+#include &lt;chrono&gt;
+
+using namespace std;
+
+// 代价函数的计算模型
+struct CURVE_FITTING_COST &#123;
+    CURVE_FITTING_COST(double x, double y) : _x(x), _y(y) &#123;&#125;
+
+    // 残差的计算
+    template&lt;typename T&gt;
+    bool operator()(
+            const T *const abc, // 模型参数，有3维
+            T *residual) const &#123;
+        residual[0] = T(_y) - ceres::exp(abc[0] * T(_x) * T(_x) + abc[1] * T(_x) + abc[2]); // y-exp(ax^2+bx+c)
+        return true;
+    &#125;
+
+    const double _x, _y;    // x,y数据
+&#125;;
+
+int main() &#123;
+    double ar = 1.0, br = 2.0, cr = 1.0;         // 真实参数值
+    double ae = 5, be = -1, ce = -3;        // 估计参数值
+    int N = 1000;                                 // 数据点
+    double w_sigma = 1.0;                        // 噪声Sigma值
+    double inv_sigma = 1.0 / w_sigma;
+    cv::RNG rng;                                 // OpenCV随机数产生器
+
+    vector&lt;double&gt; x_data, y_data;      // 数据
+    for (int i = 0; i &lt; N; i++) &#123;
+        double x = (double)i / N;
+        x_data.push_back(x);
+        y_data.push_back(exp(ar * x * x + br * x + cr) + rng.gaussian(w_sigma * w_sigma));
+    &#125;
+
+    double abc[3] = &#123;ae, be, ce&#125;;
+
+    // 构建最小二乘问题
+    ceres::Problem problem;
+    for (int i = 0; i &lt; N; i++) &#123;
+        problem.AddResidualBlock(     // 向问题中添加误差项
+                // 使用自动求导，模板参数：误差类型，输出维度，输入维度，维数要与前面struct中一致
+                new ceres::AutoDiffCostFunction&lt;CURVE_FITTING_COST, 1, 3&gt;(
+                        new CURVE_FITTING_COST(x_data[i], y_data[i])
+                ),
+                nullptr,            // 核函数，这里不使用，为空
+                abc                 // 待估计参数
+        );
+    &#125;
+
+    // 配置求解器
+    ceres::Solver::Options options;     // 这里有很多配置项可以填
+    options.linear_solver_type = ceres::DENSE_NORMAL_CHOLESKY;  // 增量方程如何求解
+    options.minimizer_progress_to_stdout = true;   // 输出到cout
+
+    ceres::Solver::Summary summary;                // 优化信息
+    chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+    ceres::Solve(options, &amp;problem, &amp;summary);  // 开始优化
+    chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+    chrono::duration&lt;double&gt; time_used = chrono::duration_cast&lt;chrono::duration&lt;double&gt;&gt;(t2 - t1);
+    cout &lt;&lt; &quot;solve time cost = &quot; &lt;&lt; time_used.count() &lt;&lt; &quot; seconds. &quot; &lt;&lt; endl;
+
+    // 输出结果
+    cout &lt;&lt; summary.BriefReport() &lt;&lt; endl;
+    cout &lt;&lt; &quot;estimated a,b,c = &quot;;
+    for (auto a:abc) cout &lt;&lt; a &lt;&lt; &quot; &quot;;
+    cout &lt;&lt; endl;
+
+    return 0;
+&#125;</code></pre>
+<h2 id="code-for-g2o">code for g2o</h2>
+<p>运行不了，但也可以把代码看完纸上谈兵的</p>
+<p>对虚函数的复习：</p>
+<p>一个类里可以定义虚函数和普通函数，二者都可以被派生类重新定义，区别在于：重新定义虚函数，则会有多态性质，也就是说派生类中会同时包含原本的虚函数和重新定义的虚函数，根据传入参数的不同决定调用哪个函数；重新定义普通函数，则没有多态性质，派生类里只有重新定义的函数了</p>
+<p>声明虚函数和重新定义虚函数的实例：</p>
+<pre><code>class Base &#123;
+public:
+    // 声明一个虚函数
+    virtual void myVirtualFunction() &#123;
+        // 这里是函数的实现
+    &#125;
+&#125;;
+
+class Derived : public Base &#123;
+public:
+    // 重新定义基类中的虚函数
+    void myVirtualFunction() override &#123;
+        // 这里是派生类中的实现
+    &#125;
+&#125;;</code></pre>
+<p>g2o实现非线性最小二乘：</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;g2o/core/g2o_core_api.h&gt;
+#include &lt;g2o/core/base_vertex.h&gt;
+#include &lt;g2o/core/base_unary_edge.h&gt;
+#include &lt;g2o/core/block_solver.h&gt;
+#include &lt;g2o/core/optimization_algorithm_levenberg.h&gt;
+#include &lt;g2o/core/optimization_algorithm_gauss_newton.h&gt;
+#include &lt;g2o/core/optimization_algorithm_dogleg.h&gt;
+#include &lt;g2o/solvers/dense/linear_solver_dense.h&gt;
+#include &lt;Eigen/Core&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;cmath&gt;
+#include &lt;chrono&gt;
+
+using namespace std;
+
+// 派生g2o的basevertex作为顶点类
+// 本次的顶点是(ae,be,ce)这3个参数组成一个顶点，所以整张图只有一个顶点，顶点包含的数据的维数是3，数据类型是Vector3d
+// 需要重写4个父类的函数
+class CurveFittingVertex : public g2o::BaseVertex&lt;3, Eigen::Vector3d&gt; &#123;
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW // 问gpt的：EIGEN_MAKE_ALIGNED_OPERATOR_NEW 是一个宏，用于为类重载 operator new 和 operator delete，以确保内存对齐，特别是对于使用 Eigen 库的类，这很重要
+
+    // 重置
+    virtual void setToOriginImpl() override &#123;
+        _estimate &lt;&lt; 0, 0, 0;
+    &#125;
+
+    // 更新
+    virtual void oplusImpl(const double *update) override &#123;
+        _estimate += Eigen::Vector3d(update);
+    &#125;
+
+    // 存盘和读盘：留空
+    virtual bool read(istream &amp;in) &#123;&#125;
+
+    virtual bool write(ostream &amp;out) const &#123;&#125;
+&#125;;
+
+// 派生g2o的BaseUnaryEdge作为边类
+// 本次的边是一个观测点和真实点的误差，所以一条边包含的数据是1维，数据类型是double
+// 需要重写父类的4个函数
+class CurveFittingEdge : public g2o::BaseUnaryEdge&lt;1, double, CurveFittingVertex&gt; &#123;
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+
+    CurveFittingEdge(double x) : BaseUnaryEdge(), _x(x) &#123;&#125;
+
+    // 计算曲线模型误差
+    virtual void computeError() override &#123;
+        const CurveFittingVertex *v = static_cast&lt;const CurveFittingVertex *&gt; (_vertices[0]);
+        const Eigen::Vector3d abc = v-&gt;estimate();
+        _error(0, 0) = _measurement - std::exp(abc(0, 0) * _x * _x + abc(1, 0) * _x + abc(2, 0));
+    &#125;
+
+    // 计算雅可比矩阵
+    virtual void linearizeOplus() override &#123;
+        const CurveFittingVertex *v = static_cast&lt;const CurveFittingVertex *&gt; (_vertices[0]);
+        const Eigen::Vector3d abc = v-&gt;estimate();
+        double y = exp(abc[0] * _x * _x + abc[1] * _x + abc[2]);
+        _jacobianOplusXi[0] = -_x * _x * y;
+        _jacobianOplusXi[1] = -_x * y;
+        _jacobianOplusXi[2] = -y;
+    &#125;
+
+    virtual bool read(istream &amp;in) &#123;&#125;
+
+    virtual bool write(ostream &amp;out) const &#123;&#125;
+
+public:
+    double _x;  // x 值， y 值为 _measurement
+&#125;;
+
+int main(int argc, char **argv) &#123;
+    double ar = 1.0, br = 2.0, cr = 1.0;         // 真实参数值
+    double ae = 2.0, be = -1.0, ce = 5.0;        // 估计参数值
+    int N = 100;                                 // 数据点
+    double w_sigma = 1.0;                        // 噪声Sigma值
+    double inv_sigma = 1.0 / w_sigma;
+    cv::RNG rng;                                 // OpenCV随机数产生器
+
+    vector&lt;double&gt; x_data, y_data;      // 数据
+    for (int i = 0; i &lt; N; i++) &#123;
+        double x = i / 100.0;
+        x_data.push_back(x);
+        y_data.push_back(exp(ar * x * x + br * x + cr) + rng.gaussian(w_sigma * w_sigma));
+    &#125;
+
+    // 构建图优化，先设定g2o
+    typedef g2o::BlockSolver&lt;g2o::BlockSolverTraits&lt;3, 1&gt;&gt; BlockSolverType;  // 每个误差项优化变量维度为3，误差值维度为1
+    typedef g2o::LinearSolverDense&lt;BlockSolverType::PoseMatrixType&gt; LinearSolverType; // 线性求解器类型
+
+    // 梯度下降方法，可以从GN, LM, DogLeg 中选
+    auto solver = new g2o::OptimizationAlgorithmGaussNewton(
+            g2o::make_unique&lt;BlockSolverType&gt;(g2o::make_unique&lt;LinearSolverType&gt;()));
+    g2o::SparseOptimizer optimizer;     // 图模型
+    optimizer.setAlgorithm(solver);   // 设置求解器
+    optimizer.setVerbose(true);       // 打开调试输出
+
+    // 往图中增加顶点
+    CurveFittingVertex *v = new CurveFittingVertex();
+    v-&gt;setEstimate(Eigen::Vector3d(ae, be, ce));
+    v-&gt;setId(0);
+    optimizer.addVertex(v);
+
+    // 往图中增加边
+    for (int i = 0; i &lt; N; i++) &#123;
+        CurveFittingEdge *edge = new CurveFittingEdge(x_data[i]);
+        edge-&gt;setId(i);
+        edge-&gt;setVertex(0, v);                // 设置连接的顶点
+        edge-&gt;setMeasurement(y_data[i]);      // 观测数值
+        edge-&gt;setInformation(Eigen::Matrix&lt;double, 1, 1&gt;::Identity() * 1 / (w_sigma * w_sigma)); // 信息矩阵：协方差矩阵之逆
+        optimizer.addEdge(edge);
+    &#125;
+
+    // 执行优化
+    cout &lt;&lt; &quot;start optimization&quot; &lt;&lt; endl;
+    chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+    optimizer.initializeOptimization();
+    optimizer.optimize(10);
+    chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+    chrono::duration&lt;double&gt; time_used = chrono::duration_cast&lt;chrono::duration&lt;double&gt;&gt;(t2 - t1);
+    cout &lt;&lt; &quot;solve time cost = &quot; &lt;&lt; time_used.count() &lt;&lt; &quot; seconds. &quot; &lt;&lt; endl;
+
+    // 输出优化值
+    Eigen::Vector3d abc_estimate = v-&gt;estimate();
+    cout &lt;&lt; &quot;estimated model: &quot; &lt;&lt; abc_estimate.transpose() &lt;&lt; endl;
+
+    return 0;
+&#125;</code></pre>
+<p>g2o是怎么确定点和边的？</p>
+<h2 id="总结-1">总结</h2>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 MXDの大house
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;MXD
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
