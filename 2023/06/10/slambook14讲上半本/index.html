@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>相机模型和多视几何 | MXDの大house</title>
+    <title>slam14讲上半本 | MXDの大house</title>
     <meta name="author" content="MXD" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -161,7 +161,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>相机模型和多视几何</h1>
+        <h1>slam14讲上半本</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -209,7 +209,6 @@ R(t)=e^{\phi_0^\wedge t }
 \]</span> 也就是，<span class="math inline">\(R\)</span>和<span
 class="math inline">\(\phi^\wedge\)</span>差不多是一一对应（如果旋转度数限制在<span
 class="math inline">\(0\sim360\)</span>就是一一对应）</p>
-<span id="more"></span>
 <h3 id="李代数">李代数</h3>
 <p>李代数是一种集合+一种运算，一个李群会对应一个李代数</p>
 <p><span class="math inline">\(\phi\)</span>就是一种李代数<span
@@ -252,12 +251,8 @@ class="math inline">\(\pmb{R}\)</span>计算<span
 class="math inline">\(\theta,\pmb{a}\)</span></p>
 <p>再同理可以得到<span class="math inline">\(SE(3)\)</span>与<span
 class="math inline">\(se(3)\)</span>的互转，下面是书上的总结图</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240226173307897.png"
-alt="image-20240226173307897" />
-<figcaption aria-hidden="true">image-20240226173307897</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240226173307897.png" /></p>
 <h3 id="啥">啥</h3>
 <p>前面得出<span class="math inline">\(R,T\)</span>可以与<span
 class="math inline">\(\phi,\xi\)</span>一一对应互转，下面有<span
@@ -359,19 +354,10 @@ class="math inline">\(b\)</span></p>
 class="math inline">\(P\)</span>在左右眼相机的像素坐标坐标只有水平坐标有差别，记作<span
 class="math inline">\(u_L,u_R\)</span>，记<span
 class="math inline">\(z\)</span>是P到光心的距离，如下图</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/deea3248c2f760bcdcc07772fc5e214.jpg"
-alt="deea3248c2f760bcdcc07772fc5e214" />
-<figcaption
-aria-hidden="true">deea3248c2f760bcdcc07772fc5e214</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/v2-6d56f0513c46f1574f9aa0dd70369bb6_720w.webp"
-alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/deea3248c2f760bcdcc07772fc5e214.jpg" /></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/v2-6d56f0513c46f1574f9aa0dd70369bb6_720w.webp" /></p>
 <p>则有关系 <span class="math display">\[
 \frac{z-f}{z}=\frac{b-u_L+u_R}{b}\\
 \Rightarrow z=\frac{fb}{d}, d=u_L-u_R
@@ -536,18 +522,10 @@ int main(int argc, char **argv) &#123;
     return 0;
 &#125;</code></pre>
 <p>手写的代码原始的没写step，要拟合的是一个二次曲线，如果把<code>ce</code>改一下就容易从这边一步跨到那一边，就会如图1直接break了，添上<code>step=0.1</code>就可以正确拟合了</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150507800.png"
-alt="image-20240303150507800" />
-<figcaption aria-hidden="true">image-20240303150507800</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150432767.png"
-alt="image-20240303150432767" />
-<figcaption aria-hidden="true">image-20240303150432767</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150507800.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303150432767.png" /></p>
 <h2 id="code-for-ceres">code for ceres</h2>
 <p>书上的ceres拟合曲线</p>
 <pre class="cpp"><code>//
