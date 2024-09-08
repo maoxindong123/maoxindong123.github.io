@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>github+hexo搭建主题+日常使用方法 | MXDの大house</title>
+    <title>Archives | MXDの大house</title>
     <meta name="author" content="MXD" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,10 +42,6 @@
 
 
 <script src="/js/lib/preview.js"></script>
-
-
-
-
 
 
 
@@ -159,127 +155,81 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>github+hexo搭建主题+日常使用方法</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/6/17
-        </span>
+            
+<div id="archives">
+    
+    <div id="timeline-wrap" ref="timeline">
         
-        <span class="category">
-            <a href="/categories/tutorial/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                tutorial
-            </a>
-        </span>
+        <div class="timeline" data-title="slam14讲上半本">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2024/9/8</div>
+                <a href="/2024/09/08/slambook14%E8%AE%B2%E4%B8%8A%E5%8D%8A%E6%9C%AC/">
+                    <h3>slam14讲上半本</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/SLAM/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            SLAM
+                        </a>
+                    </span>
+                    
+                    
+                </div>
+            </div>
+        </div>
         
+        <div class="timeline" data-title="github+hexo搭建主题+日常使用方法">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2024/9/8</div>
+                <a href="/2024/09/08/github%20page%E3%80%81hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/">
+                    <h3>github+hexo搭建主题+日常使用方法</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/tutorial/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            tutorial
+                        </a>
+                    </span>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="slam14讲下半本">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2024/9/8</div>
+                <a href="/2024/09/08/slambook14%E8%AE%B2%E4%B8%8B%E5%8D%8A%E6%9C%AC/">
+                    <h3>slam14讲下半本</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/SLAM/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            SLAM
+                        </a>
+                    </span>
+                    
+                    
+                </div>
+            </div>
+        </div>
         
     </div>
-    
-    <div class="content" v-pre>
-        <h1 id="搭建方法">搭建方法：</h1>
-<p><a
-target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
-page</a></p>
-<p>先按照这个，弄完之后是得到默认主题并且能用username.github.io浏览</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137338730">一键换肤</a></p>
-<p>换主题操作如这个，下好改个名就行</p>
-<p><del><a
-target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">终于解决了公式问题，全好了</a></del></p>
-<p>一般主题渲染公式都不行，我也不会改，但少量主题自己就解决了，所以只能找自己又喜欢、公式又支持的主题了</p>
-<p><a target="_blank" rel="noopener" href="https://argvchs.github.io/">超好看主题</a></p>
-<p>这是超好看主题的作者，这个主题也能正确显示公式，作者也写了hexo和github搭建博客的方法</p>
-<p><a
-target="_blank" rel="noopener" href="https://github.com/argvchs/blog/blob/master/_config.yml">超好看主题的作者的配置仓库</a></p>
-<p>实在不行对着改</p>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/582629584">买域名后绑到github上</a></p>
-<p>买完域名，添加了解析和在仓库里添加CNAME，输入域名就可以访问了，但github里的custom
-domain一直check失败</p>
-<p>原因是我买的腾讯云，默认解析是2个A类型，记录值是2个IP地址。应该把www的改成CNAME，然后记录值改成username.github.io。这么改完就check成功了，如图</p>
-<p><img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306172338330.png" /></p>
-<h1 id="日常用法">日常用法：</h1>
-<p>写好md，复制到blog里的<code>source/_post</code>里，</p>
-<p>然后添加front
-matter（必须在md的开头，打---，然后回车）,例如本篇：</p>
-<pre class="markdown"><code>title: github+hexo搭建主题+日常使用方法
-date: 2023-06-17 16:41:17
-tags:
-    - hexo
-    - github
-categories: tutorial</code></pre>
-<p>然后添加缩略，不然博客的home展示的每篇都是全篇展示</p>
-<pre class="markdown"><code>&lt;!-- more --&gt;</code></pre>
-<p>进到博客根目录</p>
-<pre class="cmd"><code>hexo clean
-hexo g
-hexo s
-hexo d</code></pre>
-<p>先删除之前生成的</p>
-<p>然后生成</p>
-<p>然后预览</p>
-<p>然后部署到github上去</p>
-<p>然后网上就能看到更新了</p>
-<h1 id="一些trick">一些trick</h1>
-<ol type="1">
-<li><p><a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/immaxfang/p/17068846.html">更改博客的路径</a></p></li>
-<li><p>修改文章的显示宽度（根本不懂html，胡蒙的）</p>
-<p>也就是从下面的上图改成下图</p>
-<p><img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271744625.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271745845.png" /></p>
-<p>实际上这个主题随着浏览器的宽度自适应，但按我的浏览器的常用宽度，左右两侧分别会有大片空白，所以把内容区域改宽点好使</p>
-<p>在<code>particle\source\css\main.css</code>里ctrl+F搜900px，会有6个结果，全部改成想要的数字，例如我改成1200px了</p>
-<p>例如找到的第2个改成下图，其余5个类似</p>
-<p><img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/202306271743264.png" /></p></li>
-<li><p>修改正文字体</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240303160617652.png"
-alt="image-20240303160617652" />
-<figcaption aria-hidden="true">image-20240303160617652</figcaption>
-</figure>
-<p>这个<code>20px</code>原本是<code>15px</code>，改这个</p></li>
-</ol>
-<h1 id="迁移">迁移</h1>
-<p>换电脑后，即使把hexo文件夹复制过来也不能用，所以下面是新电脑迁移的完整过程（等于重新安装了一遍了）</p>
-<ol type="1">
-<li><p>按照<a
-target="_blank" rel="noopener" href="https://huahuipj.github.io/2021/08/20/shi-yong-github-bu-shu-yi-ge-jian-dan-de-bo-ke/">部署hexo和github
-page</a>把git等等都弄了，别忘了配置git的username。如果<code>hexo s</code>无法打开可能是端口4000被占用，用<code>hexo s -p 4658</code>就可以打开</p></li>
-<li><p>主题可以直接找之前hexo文件夹里的<code>themes/主题名</code>复制过来，这样前面对主题的修改就直接移过来了</p>
-<p>md也全部复制过来，就差不多了</p></li>
-<li><p>如果输入<code>github.io</code>可以访问，但输入自己域名不能访问，是没添加cname，可以按照<a
-target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011203711">添加cname</a>，但问题是，github上设置域名是自动生成一个CNAME在根目录下，但hexo
-d是删除github上所有文件再上传自己生成的文件，所以每次hexo
-d都需要重新去github上设置域名，所以靠github生成CNAME不可行</p>
-<p>解决方法是<a
-target="_blank" rel="noopener" href="https://blog.csdn.net/mqdxiaoxiao/article/details/94053904">这个</a>，把1个CNAME放在source文件夹下即可</p></li>
-<li><p>如果公式显示不正确，确实需要按照<a
-target="_blank" rel="noopener" href="https://www.xianlongok.site/post/367fa45b/">Hexo完美支持数学公式</a>走一遍就好了，单纯安装particlex主题不够</p></li>
-<li><p>如果代码块显示不正确（行号分离、不自动换行），就按照<a
-target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">作者github</a>的2.1改一下，复制这3个即可</p></li>
-</ol>
-
-    </div>
-    
-    
-    
-    
-    
-    
-    
 </div>
 
             <footer id="footer">
@@ -310,12 +260,6 @@ target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-the
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-
     
 </body>
 </html>
