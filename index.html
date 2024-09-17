@@ -186,6 +186,184 @@
         
 
 <div class="post">
+    <a href="/2024/09/17/XFeat%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+        <h2 class="post-title"></h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917142304835.png"
+alt="image-20240917142304835" />
+<figcaption aria-hidden="true">image-20240917142304835</figcaption>
+</figure>
+<p>https://github.com/verlab/accelerated_features</p>
+<h1 id="模型">1. 模型</h1>
+<p>XFeat是一篇CVPR
+2024的论文，提出了1个关键点检索、描述子生成、特征匹配的方法，卖点在于轻量化的同时舍弃的精度很低(它希望手机
+or
+CPU都能实时)、又可以提取sparse关键点又可以提取semi-dense关键点。它这个是纯CNN的，所以是局部特征。如下，左图是对比了SP、DISK、ORB等方法(i5-1135G7上跑的)，说明XFeat速度快的同时精度也是coparative，右图是提取sparse和semi-dense的示例，上面1311个匹配点对，下面3161个匹配点对</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917143427250.png"
+alt="image-20240917143427250" />
+<figcaption aria-hidden="true">image-20240917143427250</figcaption>
+</figure>
+<p>模型分2部分：</p>
+<ol type="1">
+<li><p>关键点检测和描述子生成：</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917143554245.png" /></p>
+<p>如上，输入是<span
+class="math inline">\([H,W,1]\)</span>的tensor，会用图像金字塔得到<span
+class="math inline">\(\{\frac{1}{2},\frac{1}{4},\frac{1}{8},\frac{1}{16},\frac{1}{32}
+\}\)</span>的特征图。然后分2部分：</p>
+<ol type="1">
+<li>descriptor head:取<span
+class="math inline">\(\{\frac{1}{8},\frac{1}{16},\frac{1}{32}\}\)</span>的特征图，全部做上采样到<span
+class="math inline">\(\frac{1}{8}\)</span>然后加起来，然后过CNN层，出<span
+class="math inline">\([\frac{H}{8},\frac{W}{8},64]\)</span>形状的描述子图和可靠性图</li>
+<li>keypoint head: 原图切成<span class="math inline">\(8\times
+8\)</span>的patch，每个patch展平为64维向量，变成<span
+class="math inline">\(\frac{H}{8}\times \frac{W}{8}\times
+64\)</span>形状，然后过4层MLP，变成<span
+class="math inline">\(\frac{H}{8}\times \frac{W}{8}\times
+(64+1)\)</span>，再展回原图形状(除了多的那个1)<span
+class="math inline">\(H\times W\)</span></li>
+</ol></li>
+<li><p>特征匹配：</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917144519866.png" /></p>
+<p>如上，如果是sparse则直接NN，如果是semi-dense采用这个</p>
+<p>上一步“关键点检测和描述子生成”得到的描述子是在<span
+class="math inline">\(\frac{1}{8}\)</span>上的，这一步其实是refine，算具体在原图的<span
+class="math inline">\(8\times 8\)</span>
+patch的哪个像素。方法是，先在<span
+class="math inline">\(\frac{1}{8}\)</span>上做NN，得到匹配点对，每一对会有个特征<span
+class="math inline">\(f_a,f_b\)</span>(这个相当于原图的匹配patch)。然后<span
+class="math inline">\(f_a,f_b\)</span>拼接过1个MLP得到64维向量再resshape
+<span class="math inline">\(8\times
+8\)</span>，当作是实际是哪个像素的热图</p></li>
+</ol>
+<p>训练使用的数据是图片对<span
+class="math inline">\(I_1,I_2\)</span>和其上的<span
+class="math inline">\(N\)</span>个匹配点对<span
+class="math inline">\(M_{I_1\leftrightarrow I_2}\in \R^{N\times
+4}\)</span>。loss一共分4部分：<span class="math inline">\(\mathcal{L} =
+\alpha\mathcal{L}_{ds}+\beta\mathcal{L}_{rel}+\gamma\mathcal{L}_{fine}+\delta\mathcal{L}_{kp}\)</span>:</p>
+<ol type="1">
+<li><p>描述子loss:描述子类似对比学习，需要匹配点对的描述子更近而不匹配点对的描述子更远(复习CLIP和LoFTR的<a
+target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1893485">Dual Softmax
+Loss</a>)</p>
+<p>模型预测出的匹配点对的描述子是<span class="math inline">\(F_1\in
+\R^{N\times 64},F_2\in \R^{N\times 64}\)</span>，算个相似度矩阵<span
+class="math inline">\(S=F_1F_2^T\)</span>。注意，<span
+class="math inline">\(S\)</span>的每行做Softmax相当于<span
+class="math inline">\(f_i\in F_1\)</span>去<span
+class="math inline">\(F_2\)</span>中挑谁和自己最相似，<span
+class="math inline">\(S\)</span>的每列相当于<span
+class="math inline">\(f_i\in F_2\)</span>去<span
+class="math inline">\(F_1\)</span>中挑谁和自己最相似，所以CLIP(如下伪代码)就分别在axis=0和axis=1上做Softmax，并和gt概率算交叉熵</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917150908620.png" /></p>
+<p>所以本文也是这样 <span class="math display">\[
+L_{ds} = - \sum_i log(softmax(S)_{ii}) - \sum_i log(softmax(S^T)_{ii})
+\]</span></p></li>
+<li><p>可靠性loss：要使得描述子具有可靠性，就需要让匹配点对的描述子对越接近越好(上面对比学习loss只要求网络negetive离positive越远越好，而没有很明显地要求positive越小越好)。上面的<span
+class="math inline">\(S\)</span>看作是可靠性分数，每行做Softmax取argmax作为<span
+class="math inline">\(\overline{R_1}\)</span>，每列做Softmax取argmax作为<span
+class="math inline">\(\overline{R_2}\)</span>，然后和<span
+class="math inline">\(R\)</span>算L1
+loss(没咋看懂，这个loss是干啥的，为啥取<span
+class="math inline">\(sigmoid\)</span>) <span class="math display">\[
+L_{rel}=|\sigma(R_1)-\overline{R_1}\odot\overline{R_2}|+|\sigma(R_2)-\overline{R_1}\odot\overline{R_2}|
+\]</span></p></li>
+<li><p>refine loss:训那个特征匹配模型的，直接热图算交叉熵loss <span
+class="math display">\[
+L_{fine}=-sum_i log(softmax(o_i))
+\]</span></p></li>
+<li><p>关键点检测loss:因为本文的关键点检测很轻量(差不多只有4层MLP)，所以直接找个模型蒸馏(找的ALIKE)。因为预测的是热图，所以loss还是交叉熵
+<span class="math display">\[
+L_{kp}=-sum_i log(softmax(k_{i,j}))
+\]</span></p></li>
+</ol>
+<h1 id="实验">2. 实验</h1>
+<p>模型在megadepth和某个合成的COCO上训练的，1个4090花了36小时</p>
+<p>模型分2个：XFeat是sparse，使用NN做特征匹配；XFeat*是semi-dense，使用前面的特征匹配网络做特征匹配</p>
+<p>视觉定位aachen如下。XFeat是sparse的方法，所以还可以</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917152502871.png" /></p>
+<p>做了消融实验如下，说明了：</p>
+<ol type="1">
+<li>同时在现实数据和合成数据上训练很好，如(i)</li>
+<li>关键点的检测和描述最好分开，如(iii)</li>
+<li>semi-dense很需要特征匹配网络，如果没有特征匹配网络，也许还不如sparse的效果好。sparse+NN-&gt;
+42.6 vs semi-dense+NN-&gt;38.6 vs semi-dense+特征匹配网络-&gt;50.2</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/image-20240917152540931.png" /></p>
+<h1 id="跑">3. 跑</h1>
+<p>github有示例</p>
+<p>在它的库里跑:</p>
+<pre><code>from modules.xfeat import XFeat
+import torch
+import numpy as np
+from PIL import Image
+
+xfeat = XFeat()
+
+#Simple inference with batch sz = 1
+rgb = np.array(Image.open(&#39;../mxd_glace/datasets/cambridge_undistort/GreatCourt/train/rgb/000616.png&#39;))
+rgb = torch.from_numpy(rgb).permute(2,0,1).unsqueeze(0)
+print(rgb.shape)
+output = xfeat.detectAndCompute(rgb, top_k = 4096)[0]
+for k in output.keys():
+    print(k, output[k].shape)</code></pre>
+<p>放自己的库里跑:</p>
+<pre><code>sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), &#39;third_party&#39;, &#39;XFeat&#39;)))
+from third_party.XFeat.modules.xfeat import XFeat
+
+class XFeat_matcher:
+    def __init__(self) -&gt; None:
+        self.xfeat = XFeat()
+    
+    def extract_keypoints(self, rgb): # 提取XFeat关键点，输入[h,w,3]的rgb:ndarray
+        rgb = torch.from_numpy(rgb).to(&#39;cuda&#39;).permute(2,0,1).unsqueeze(0) # [1,3,h,w]
+        output = self.xfeat.detectAndCompute(torch.randn(1,3,480,640), top_k = 4096)[0]
+        return output[&#39;keypoints&#39;].cpu().numpy(), output[&#39;descriptors&#39;].cpu().numpy() # [4096,2]和[4096,64]
+
+    def match(self, rgb1, rgb2): # 2个rgb做特征匹配，输入[h,w,3]的rgb:ndarray
+        rgb1, rgb2 = torch.from_numpy(rgb1).to(&#39;cuda&#39;).permute(2,0,1).unsqueeze(0), torch.from_numpy(rgb2).to(&#39;cuda&#39;).permute(2,0,1).unsqueeze(0)
+        kp1, kp2 = self.xfeat.match_xfeat(rgb1, rgb2)
+        return kp1, kp2 # [n,2] ndarray</code></pre>
+<p>结果：感觉也不是很强，误匹配不少</p>
+<p><img
+src="https://raw.githubusercontent.com/maoxindong123/my_pictures/main/38123182340124.jpg" /></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/09/17/XFeat%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/09/08/slambook14%E8%AE%B2%E4%B8%8B%E5%8D%8A%E6%9C%AC/">
         <h2 class="post-title">slam14讲下半本</h2>
     </a>
